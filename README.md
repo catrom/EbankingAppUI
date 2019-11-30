@@ -1,2 +1,0 @@
-# EbankingAppUI
-react native
