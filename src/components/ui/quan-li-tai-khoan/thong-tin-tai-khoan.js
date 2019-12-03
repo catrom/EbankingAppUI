@@ -11,7 +11,7 @@ export default class ScreenThongTinTaiKhoan extends React.Component {
         <TouchableHighlight
           style={styles.iconContainer}
           onPress={() =>
-            this.props.navigation.push('Home', {
+            this.props.navigation.navigate('Home', {
               itemId: Math.floor(Math.random() * 100),
             })
           }>

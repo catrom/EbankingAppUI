@@ -5,7 +5,9 @@ import {
   DanhSachTaiKhoan as ScreenDanhSachTaiKhoan,
   TaiKhoanThanhToan as ScreenTaiKhoanThanhToan,
   ThongTinTaiKhoan as ScreenThongTinTaiKhoan,
+  DanhSachKhuyenMai as ScreenDanhSachKhuyenMai,
 } from './index';
+import ScreenChiTietKhuyenMai from './quan-li-khuyen-mai/chi-tiet-khuyen-mai';
 
 const RootStack = createStackNavigator(
   {
@@ -13,6 +15,8 @@ const RootStack = createStackNavigator(
     DanhSachTaiKhoan: ScreenDanhSachTaiKhoan,
     TaiKhoanThanhToan: ScreenTaiKhoanThanhToan,
     ThongTinTaiKhoan: ScreenThongTinTaiKhoan,
+    DanhSachKhuyenMai: ScreenDanhSachKhuyenMai,
+    ChiTietKhuyenMai: ScreenChiTietKhuyenMai,
   },
   {
     initialRouteName: 'Home',

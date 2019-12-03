@@ -9,17 +9,42 @@ export default class ScreenHome extends React.Component {
   render() {
     return (
       <View style={styles.home}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Tai Khoan"
-          onPress={() => {
-            /* 1. Navigate to the Details route with params */
-            this.props.navigation.navigate('DanhSachTaiKhoan', {
-              itemId: 80,
-              otherParam: 'anything you want here',
-            });
-          }}
-        />
+        <View style={{margin: 10}}>
+          <Button
+            title="QUẢN LÝ TÀI KHOẢN"
+            onPress={() => {
+              /* 1. Navigate to the Details route with params */
+              this.props.navigation.navigate('DanhSachTaiKhoan', {
+                itemId: 80,
+                otherParam: 'anything you want here',
+              });
+            }}
+          />
+        </View>
+        <View style={{margin: 10}}>
+          <Button
+            title="QUẢN LÝ THẺ"
+            onPress={() => {
+              /* 1. Navigate to the Details route with params */
+              this.props.navigation.navigate('DanhSachThe', {
+                itemId: 70,
+                otherParam: 'anything you want here',
+              });
+            }}
+          />
+        </View>
+        <View style={{margin: 10}}>
+          <Button
+            title="TIN TỨC - KHUYẾN MÃI"
+            onPress={() => {
+              /* 1. Navigate to the Details route with params */
+              this.props.navigation.navigate('DanhSachKhuyenMai', {
+                itemId: 60,
+                otherParam: 'anything you want here',
+              });
+            }}
+          />
+        </View>
       </View>
     );
   }
@@ -28,7 +53,9 @@ export default class ScreenHome extends React.Component {
 const styles = StyleSheet.create({
   home: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 20,
   },
 });
