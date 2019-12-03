@@ -20,12 +20,14 @@ const RootStack = createStackNavigator(
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#2B3F51',
+        height: 64,
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'normal',
       },
     },
+    headerLayoutPreset: 'center',
   },
 );
 

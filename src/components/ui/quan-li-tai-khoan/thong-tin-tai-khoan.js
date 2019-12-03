@@ -1,14 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground} from 'react-native';
+import {TouchableHighlight} from 'react-native-gesture-handler';
 
 export default class ScreenThongTinTaiKhoan extends React.Component {
   static navigationOptions = ({navigationOptions}) => {
-    console.log(navigationOptions);
-
     return {
-      // title: navigation.getParam('otherParam', 'A Nested Details Screen'),
-      title: 'Thông Tin Tài Khoản',
+      title: 'THÔNG TIN TÀI KHOẢN',
+      headerRight: (
+        <TouchableHighlight
+          style={styles.iconContainer}
+          onPress={() =>
+            this.props.navigation.push('Home', {
+              itemId: Math.floor(Math.random() * 100),
+            })
+          }>
+          <ImageBackground
+            source={require('app/src/assets/icons/home.png')}
+            style={styles.icon}
+          />
+        </TouchableHighlight>
+      ),
     };
   };
 
@@ -52,7 +64,7 @@ class ListItem extends React.PureComponent {
           <Text style={{fontSize: 16}}>{item1}</Text>
           <Text style={{fontSize: 16}}>{item2}</Text>
         </View>
-        <View style={{height: 1, backgroundColor: '#263238'}} />
+        <View style={{height: 1, backgroundColor: 'rgba(38, 50, 56, 1)'}} />
       </View>
     );
   }
@@ -62,9 +74,19 @@ const styles = StyleSheet.create({
   listThongTinTaiKhoan: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 8,
+    marginTop: 13,
     marginBottom: 13,
     marginLeft: 4,
     marginRight: 4,
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    margin: 20,
+  },
+  icon: {
+    height: 26,
+    width: 26,
+    resizeMode: 'stretch',
+    marginLeft: 5,
   },
 });
