@@ -7,3 +7,6 @@ export { default as ThongTinTaiKhoan } from './quan-li-tai-khoan/thong-tin-tai-k
 
 export { default as DanhSachKhuyenMai } from './quan-li-khuyen-mai/danh-sach-khuyen-mai';
 export { default as ChiTietKhuyenMai } from './quan-li-khuyen-mai/chi-tiet-khuyen-mai';
+
+export { default as DanhSachThe } from './quan-li-the/danh-sach-the';
+export { default as ChiTietThe } from './quan-li-the/chi-tiet-the';

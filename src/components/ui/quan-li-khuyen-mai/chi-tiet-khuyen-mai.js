@@ -51,7 +51,8 @@ export default class ScreenChiTietKhuyenMai extends React.Component {
             Sở hữu ngay vali cao cấp khi trở thành Khách Hàng Ưu Tiên mới.
           </Text>
           <Text style={{fontSize: 18, marginTop: 12, fontWeight: 'bold'}}>
-            Chương trình kéo dài từ nay đến 31/12/2019 (hoặc khi nào hết ngân sách)
+            Chương trình kéo dài từ nay đến 31/12/2019 (hoặc khi nào hết ngân
+            sách)
           </Text>
           <Text style={{fontSize: 18, marginTop: 12}}>
             - Số dư tại thời điểm xét từ 2 đến 5 tỷ - tặng Vali 20"

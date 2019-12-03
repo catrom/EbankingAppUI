@@ -152,12 +152,12 @@ const AllView = () => (
     />
     <TransactionItem
       date={'05/11/19 8:25:32'}
-      item1={'995219110555 - Tiền lương tháng'}
+      item1={'995219110555 - Tiền lương tháng...'}
       item2={'+5,480,000'}
     />
     <TransactionItem
       date={'05/11/19 8:25:32'}
-      item1={'995219110555 - Học bổng học '}
+      item1={'995219110555 - Học bổng học kỳ... '}
       item2={'+14,000,000'}
     />
   </View>
@@ -168,12 +168,12 @@ const MoneyInView = () => (
     style={styles.listTransactionItems}>
     <TransactionItem
       date={'05/11/19 8:25:32'}
-      item1={'995219110555 - Tiền lương tháng'}
+      item1={'995219110555 - Tiền lương tháng...'}
       item2={'+5,480,000'}
     />
     <TransactionItem
       date={'05/11/19 8:25:32'}
-      item1={'995219110555 - Học bổng học '}
+      item1={'995219110555 - Học bổng học kỳ...'}
       item2={'+14,000,000'}
     />
   </View>
