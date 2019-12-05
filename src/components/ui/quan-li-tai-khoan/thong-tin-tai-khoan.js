@@ -1,20 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
-import {TouchableHighlight} from 'react-native-gesture-handler';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableHighlight,
+} from 'react-native';
 
 export default class ScreenThongTinTaiKhoan extends React.Component {
-  static navigationOptions = ({navigationOptions}) => {
+  static navigationOptions = ({navigation}) => {
     return {
       title: 'THÔNG TIN TÀI KHOẢN',
       headerRight: (
         <TouchableHighlight
           style={styles.iconContainer}
-          onPress={() =>
-            this.props.navigation.navigate('Home', {
-              itemId: Math.floor(Math.random() * 100),
-            })
-          }>
+          onPress={navigation.getParam('goBack')}
+          underlayColor="#2B3F51">
           <ImageBackground
             source={require('app/src/assets/icons/home.png')}
             style={styles.icon}
@@ -22,6 +24,16 @@ export default class ScreenThongTinTaiKhoan extends React.Component {
         </TouchableHighlight>
       ),
     };
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({goBack: this._goBack});
+  }
+
+  _goBack = () => {
+    this.props.navigation.navigate('Home', {
+      itemId: Math.floor(Math.random() * 100),
+    });
   };
 
   render() {

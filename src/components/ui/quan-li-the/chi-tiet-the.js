@@ -6,8 +6,8 @@ import {
   StyleSheet,
   ImageBackground,
   Modal,
-  Button,
   TouchableHighlight,
+  TextInput,
 } from 'react-native';
 
 export default class ScreenChiTietThe extends React.Component {
@@ -23,7 +23,6 @@ export default class ScreenChiTietThe extends React.Component {
 
   toggleModal = () => {
     this.setState({isModalVisible: !this.state.isModalVisible});
-    console.log(this.state.isModalVisible);
   };
 
   render() {
@@ -69,7 +68,7 @@ export default class ScreenChiTietThe extends React.Component {
         <View style={{paddingLeft: 15, paddingTop: 30, flexDirection: 'row'}}>
           <View>
             <ImageBackground
-              source={require('app/src/assets/icons/info.png')}
+              source={require('app/src/assets/icons/info2.png')}
               style={{
                 resizeMode: 'stretch',
                 height: 22,
@@ -143,10 +142,58 @@ export default class ScreenChiTietThe extends React.Component {
           />
         </View>
 
-        <Modal visible={this.state.isModalVisible}>
-          <View style={{flex: 1}}>
-            <Text>Hello!</Text>
-            <Button title="Hide modal" onPress={this.toggleModal} />
+        <Modal visible={this.state.isModalVisible} transparent={true}>
+          <View style={styles.modal}>
+            <View style={styles.viewInModal}>
+              <View
+                style={{
+                  height: 50,
+                  backgroundColor: '#2D3841',
+                  justifyContent: 'center',
+                }}>
+                <Text style={{fontSize: 17, color: '#fff', marginLeft: 20}}>
+                  XÁC NHẬN OTP
+                </Text>
+              </View>
+              <View style={{margin: 20}}>
+                <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.7)'}}>
+                  Quý khách vui lòng nhập mã OTP được gửi về số điện thoại để
+                  xác nhận khoá thẻ
+                </Text>
+                <View
+                  style={{
+                    borderBottomWidth: 1,
+                    borderBottomColor: 'rgba(38, 50, 56, 0.4)',
+                    width: 92,
+                  }}>
+                  <TextInput
+                    style={{
+                      fontSize: 16,
+                      height: 40,
+                      fontWeight: 'bold',
+                    }}
+                    keyboardType={'numeric'}
+                    maxLength={6}
+                  />
+                </View>
+              </View>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <TouchableHighlight
+                  onPress={() => this.toggleModal()}
+                  underlayColor="rgba(102, 118, 133, 0.3)">
+                  <View style={[styles.btn, styles.btnHuyBo]}>
+                    <Text style={styles.textInButton}>Huỷ bỏ</Text>
+                  </View>
+                </TouchableHighlight>
+                <TouchableHighlight
+                  onPress={() => this.toggleModal()}
+                  underlayColor="rgba(43, 63, 81, 0.3)">
+                  <View style={[styles.btn, styles.btnDongY]}>
+                    <Text style={styles.textInButton}>Đồng ý</Text>
+                  </View>
+                </TouchableHighlight>
+              </View>
+            </View>
           </View>
         </Modal>
       </View>
@@ -225,5 +272,46 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     margin: 4,
+  },
+  modal: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  viewInModal: {
+    width: 374,
+    height: 213,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: 'rgba(43, 63, 81, 0.3)',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  btn: {
+    padding: 10,
+    marginTop: 5,
+    marginRight: 20,
+    marginLeft: 20,
+    width: 129,
+    height: 37,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  btnHuyBo: {
+    backgroundColor: 'rgba(102, 118, 133, 1)',
+  },
+  btnDongY: {
+    backgroundColor: 'rgba(43, 63, 81, 1)',
+  },
+  textInButton: {
+    fontSize: 17,
+    color: '#fff',
   },
 });

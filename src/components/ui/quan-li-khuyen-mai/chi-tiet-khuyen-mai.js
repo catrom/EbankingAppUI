@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, ImageBackground} from 'react-native';
-import {TouchableHighlight} from 'react-native-gesture-handler';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableHighlight,
+} from 'react-native';
 
 export default class ScreenChiTietKhuyenMai extends React.Component {
   static navigationOptions = ({navigationOptions}) => {
@@ -11,7 +16,7 @@ export default class ScreenChiTietKhuyenMai extends React.Component {
         <TouchableHighlight
           style={styles.iconContainer}
           onPress={() =>
-            this.props.navigation.navigate('Home', {
+            this.props.navigation.push('Home', {
               itemId: Math.floor(Math.random() * 100),
             })
           }>
