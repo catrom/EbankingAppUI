@@ -9,6 +9,9 @@ import {
   ChiTietKhuyenMai as ScreenChiTietKhuyenMai,
   DanhSachThe as ScreenDanhSachThe,
   ChiTietThe as ScreenChiTietThe,
+  ThanhToanHoaDon as ScreenThanhToanHoaDon,
+  NhapHoaDonDien as ScreenNhapHoaDonDien,
+  ChiTietGiaoDichHoaDon as ScreenChiTietGiaoDichHoaDon,
 } from './index';
 
 const RootStack = createStackNavigator(
@@ -21,6 +24,9 @@ const RootStack = createStackNavigator(
     ChiTietKhuyenMai: ScreenChiTietKhuyenMai,
     DanhSachThe: ScreenDanhSachThe,
     ChiTietThe: ScreenChiTietThe,
+    ThanhToanHoaDon: ScreenThanhToanHoaDon,
+    NhapHoaDonDien: ScreenNhapHoaDonDien,
+    ChiTietGiaoDichHoaDon: ScreenChiTietGiaoDichHoaDon,
   },
   {
     initialRouteName: 'Home',

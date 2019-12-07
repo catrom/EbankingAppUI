@@ -10,3 +10,7 @@ export { default as ChiTietKhuyenMai } from './quan-li-khuyen-mai/chi-tiet-khuye
 
 export { default as DanhSachThe } from './quan-li-the/danh-sach-the';
 export { default as ChiTietThe } from './quan-li-the/chi-tiet-the';
+
+export { default as ThanhToanHoaDon } from './thanh-toan-hoa-don/thanh-toan-hoa-don.js';
+export { default as NhapHoaDonDien } from './thanh-toan-hoa-don/hoa-don-tien-dien/nhap-hoa-don-dien.js';
+export { default as ChiTietGiaoDichHoaDon } from './thanh-toan-hoa-don/hoa-don-tien-dien/chi-tiet-giao-dich.js';

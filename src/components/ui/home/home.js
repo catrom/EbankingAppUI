@@ -35,6 +35,18 @@ export default class ScreenHome extends React.Component {
         </View>
         <View style={{margin: 10}}>
           <Button
+            title="THANH TOÁN HOÁ ĐƠN"
+            onPress={() => {
+              /* 1. Navigate to the Details route with params */
+              this.props.navigation.navigate('ThanhToanHoaDon', {
+                itemId: 50,
+                otherParam: 'anything you want here',
+              });
+            }}
+          />
+        </View>
+        <View style={{margin: 10}}>
+          <Button
             title="TIN TỨC - KHUYẾN MÃI"
             onPress={() => {
               /* 1. Navigate to the Details route with params */
