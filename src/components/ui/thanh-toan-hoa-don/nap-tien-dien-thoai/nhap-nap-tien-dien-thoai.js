@@ -12,7 +12,6 @@ import {
 import {TabView, SceneMap} from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
 import {Dropdown} from 'react-native-material-dropdown';
-import {withNavigation} from 'react-navigation';
 
 let dataAccount = [
   {

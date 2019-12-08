@@ -9,17 +9,14 @@ import {
 } from 'react-native';
 
 export default class ScreenChiTietKhuyenMai extends React.Component {
-  static navigationOptions = ({navigationOptions}) => {
+  static navigationOptions = ({navigation}) => {
     return {
       title: 'TIN TỨC - KHUYẾN MÃI',
       headerRight: (
         <TouchableHighlight
+          underlayColor="#2B3F51"
           style={styles.iconContainer}
-          onPress={() =>
-            this.props.navigation.push('Home', {
-              itemId: Math.floor(Math.random() * 100),
-            })
-          }>
+          onPress={navigation.getParam('goBack')}>
           <ImageBackground
             source={require('app/src/assets/icons/home.png')}
             style={styles.icon}
@@ -27,6 +24,16 @@ export default class ScreenChiTietKhuyenMai extends React.Component {
         </TouchableHighlight>
       ),
     };
+  };
+
+  componentDidMount() {
+    this.props.navigation.setParams({goBack: this._goBack});
+  }
+
+  _goBack = () => {
+    this.props.navigation.navigate('Home', {
+      itemId: Math.floor(Math.random() * 100),
+    });
   };
 
   render() {

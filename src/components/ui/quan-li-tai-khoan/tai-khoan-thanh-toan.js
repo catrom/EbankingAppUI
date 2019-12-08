@@ -1,8 +1,14 @@
-/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, ImageBackground } from 'react-native';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
+import {TabView, SceneMap} from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
 
 export default class ScreenTaiKhoanThanhToan extends React.Component {
@@ -22,7 +28,7 @@ export default class ScreenTaiKhoanThanhToan extends React.Component {
     ],
   };
 
-  _handleIndexChange = index => this.setState({ index });
+  _handleIndexChange = index => this.setState({index});
 
   _renderTabBar = props => {
     return (
@@ -31,8 +37,11 @@ export default class ScreenTaiKhoanThanhToan extends React.Component {
           return (
             <TouchableOpacity
               style={styles.tabItem}
-              onPress={() => this.setState({ index: i })}>
-              <Animated.Text style={{ color: 'black', fontSize: 16, paddingTop: 50 }}>{route.title}</Animated.Text>
+              onPress={() => this.setState({index: i})}>
+              <Animated.Text
+                style={{color: 'black', fontSize: 16, paddingTop: 50}}>
+                {route.title}
+              </Animated.Text>
             </TouchableOpacity>
           );
         })}
@@ -64,10 +73,30 @@ export default class ScreenTaiKhoanThanhToan extends React.Component {
           <View>
             <View style={{flexDirection: 'row', margin: 20}}>
               <View style={{width: 70}} />
-              <Text style={{fontSize: 30, fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.75)'}}> 19,200,000 </Text>
-              <Text style={{fontSize: 20, fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.75)', marginTop: 10}}> VND </Text>
+              <Text
+                style={{
+                  fontSize: 30,
+                  fontWeight: 'bold',
+                  color: 'rgba(0, 0, 0, 0.75)',
+                }}>
+                {' '}
+                19,200,000{' '}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: 'rgba(0, 0, 0, 0.75)',
+                  marginTop: 10,
+                }}>
+                {' '}
+                VND{' '}
+              </Text>
               <View style={{width: 30}} />
-              <ImageBackground source={require('app/src/assets/icons/next.png')} style={styles.icon} />
+              <ImageBackground
+                source={require('app/src/assets/icons/next.png')}
+                style={styles.icon}
+              />
             </View>
             <View style={styles.separator} />
           </View>
@@ -79,19 +108,35 @@ export default class ScreenTaiKhoanThanhToan extends React.Component {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          <TouchableHighlight underlayColor="rgba(187, 191, 193, 0.2)">
+          <TouchableHighlight
+            underlayColor="#fff"
+            onPress={() =>
+              this.props.navigation.push('ChuyenTien', {
+                itemId: Math.floor(Math.random() * 100),
+              })
+            }>
             <View style={styles.btnTaiKhoanThanhToan}>
               <Text style={styles.textInButton}>Chuyển tiền</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight underlayColor="rgba(187, 191, 193, 0.2)">
+          <TouchableHighlight
+            underlayColor="#fff"
+            onPress={() =>
+              this.props.navigation.push('NhapNapTienDienThoai', {
+                itemId: Math.floor(Math.random() * 100),
+              })
+            }>
             <View style={styles.btnTaiKhoanThanhToan}>
-              <Text style={styles.textInButton}>
-                Nạp tiền điện thoại
-              </Text>
+              <Text style={styles.textInButton}>Nạp tiền điện thoại</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight underlayColor="rgba(187, 191, 193, 0.2)">
+          <TouchableHighlight
+            underlayColor="#fff"
+            onPress={() =>
+              this.props.navigation.push('ThanhToanHoaDon', {
+                itemId: Math.floor(Math.random() * 100),
+              })
+            }>
             <View style={styles.btnTaiKhoanThanhToan}>
               <Text style={styles.textInButton}>Thanh toán</Text>
             </View>
@@ -114,7 +159,8 @@ class TransactionItem extends React.PureComponent {
     const date = this.props.date;
     const item1 = this.props.item1;
     const item2 = this.props.item2;
-    const item2color = item2[0] === '+' ? 'rgba(24, 133, 234, 0.87)' : 'rgba(250, 12, 12, 0.87)';
+    const item2color =
+      item2[0] === '+' ? 'rgba(24, 133, 234, 0.87)' : 'rgba(250, 12, 12, 0.87)';
 
     return (
       <View
@@ -124,7 +170,9 @@ class TransactionItem extends React.PureComponent {
           justifyContent: 'flex-start',
         }}>
         <View style={{marginTop: 4, marginLeft: 4, marginRight: 4}}>
-          <Text style={{fontSize: 13, color: 'rgba(125, 129, 125, 0.87)'}}>{date}</Text>
+          <Text style={{fontSize: 13, color: 'rgba(125, 129, 125, 0.87)'}}>
+            {date}
+          </Text>
         </View>
 
         <View style={styles.listThongTinTaiKhoan}>
@@ -138,8 +186,7 @@ class TransactionItem extends React.PureComponent {
 }
 
 const AllView = () => (
-  <View
-    style={styles.listTransactionItems}>
+  <View style={styles.listTransactionItems}>
     <TransactionItem
       date={'05/11/19 12:36:27'}
       item1={'995219110555 - Rút tiền ATM'}
@@ -164,8 +211,7 @@ const AllView = () => (
 );
 
 const MoneyInView = () => (
-  <View
-    style={styles.listTransactionItems}>
+  <View style={styles.listTransactionItems}>
     <TransactionItem
       date={'05/11/19 8:25:32'}
       item1={'995219110555 - Tiền lương tháng...'}
@@ -180,8 +226,7 @@ const MoneyInView = () => (
 );
 
 const MoneyOutView = () => (
-  <View
-    style={styles.listTransactionItems}>
+  <View style={styles.listTransactionItems}>
     <TransactionItem
       date={'05/11/19 12:36:27'}
       item1={'995219110555 - Rút tiền ATM'}
@@ -194,7 +239,6 @@ const MoneyOutView = () => (
     />
   </View>
 );
-
 
 const styles = StyleSheet.create({
   container: {
