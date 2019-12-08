@@ -58,7 +58,13 @@ export default class ScreenThanhToanHoaDon extends React.Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight underlayColor="#fff">
+        <TouchableHighlight
+          underlayColor="#fff"
+          onPress={() =>
+            this.props.navigation.push('NhapNapTienDienThoai', {
+              itemId: Math.floor(Math.random() * 100),
+            })
+          }>
           <View style={styles.rowContainer}>
             <View style={styles.textContainer}>
               <Text style={styles.loaihoadon}>NẠP TIỀN ĐIỆN THOẠI</Text>

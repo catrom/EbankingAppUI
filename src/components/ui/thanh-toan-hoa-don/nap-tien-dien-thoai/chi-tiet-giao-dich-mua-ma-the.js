@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
-export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
+export default class ScreenChiTietGiaoDichMuaMaThe extends React.Component {
   static navigationOptions = ({navigationOptions}) => {
     console.log(navigationOptions);
     return {
@@ -62,7 +62,7 @@ export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
               </View>
               <View style={{marginVertical: 12, marginHorizontal: 20}}>
                 <Text style={styles.value}>
-                  THANH TOAN HOA DON TIEN DIEN THANG 10/2019
+                  MUA MA THE DI DONG - MOBIFONE - 20000VND
                 </Text>
               </View>
               <View style={styles.line} />
@@ -74,16 +74,29 @@ export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
               <View style={{}}>
-                <Text style={styles.title}>Số tiền</Text>
+                <Text style={styles.title}>Thông tin thẻ</Text>
               </View>
-              <View style={{marginTop: 7, marginHorizontal: 20}}>
-                <Text style={styles.value}>576,340 VND</Text>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{flexDirection: 'column', width: 355}}>
+                  <View style={{marginTop: 7, marginHorizontal: 20}}>
+                    <Text style={[styles.value, styles.bold]}>
+                      214964497573664
+                    </Text>
+                  </View>
+                  <View style={{marginVertical: 4, marginHorizontal: 20}}>
+                    <Text style={styles.description}>
+                      Số seri: 10004816718943
+                    </Text>
+                  </View>
+                </View>
+                <View style={{marginTop: 5}}>
+                  <ImageBackground
+                    source={require('app/src/assets/icons/copy.png')}
+                    style={styles.icon}
+                  />
+                </View>
               </View>
-              <View style={{marginVertical: 4, marginHorizontal: 20}}>
-                <Text style={styles.description}>
-                  Năm trăm bảy mươi sáu nghìn ba trăm bốn mươi đồng
-                </Text>
-              </View>
+
               <View style={styles.line} />
             </View>
           </View>
@@ -144,7 +157,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   description: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: 'normal',
     color: 'rgba(0, 0, 0, 0.60)',
   },
@@ -153,6 +166,15 @@ const styles = StyleSheet.create({
     width: 356,
     height: 51,
     backgroundColor: '#2B3F51',
+    justifyContent: 'center',
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  icon: {
+    height: 25,
+    width: 25,
+    resizeMode: 'stretch',
     justifyContent: 'center',
   },
 });

@@ -12,6 +12,11 @@ import {
   ThanhToanHoaDon as ScreenThanhToanHoaDon,
   NhapHoaDonDien as ScreenNhapHoaDonDien,
   ChiTietGiaoDichHoaDon as ScreenChiTietGiaoDichHoaDon,
+  NhapNapTienDienThoai as ScreenNhapNapTienDienThoai,
+  XacNhanNapTienDienThoai as ScreenXacNhanNapTienDienThoai,
+  XacNhanMuaMaThe as ScreenXacNhanMuaMaThe,
+  ChiTietGiaoDichNapTien as ScreenChiTietGiaoDichNapTien,
+  ChiTietGiaoDichMuaMaThe as ScreenChiTietGiaoDichMuaMaThe,
 } from './index';
 
 const RootStack = createStackNavigator(
@@ -27,6 +32,11 @@ const RootStack = createStackNavigator(
     ThanhToanHoaDon: ScreenThanhToanHoaDon,
     NhapHoaDonDien: ScreenNhapHoaDonDien,
     ChiTietGiaoDichHoaDon: ScreenChiTietGiaoDichHoaDon,
+    NhapNapTienDienThoai: ScreenNhapNapTienDienThoai,
+    XacNhanNapTienDienThoai: ScreenXacNhanNapTienDienThoai,
+    XacNhanMuaMaThe: ScreenXacNhanMuaMaThe,
+    ChiTietGiaoDichNapTien: ScreenChiTietGiaoDichNapTien,
+    ChiTietGiaoDichMuaMaThe: ScreenChiTietGiaoDichMuaMaThe,
   },
   {
     initialRouteName: 'Home',

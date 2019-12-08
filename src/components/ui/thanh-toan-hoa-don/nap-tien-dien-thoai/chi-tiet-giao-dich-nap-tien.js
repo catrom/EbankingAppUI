@@ -8,7 +8,7 @@ import {
   ImageBackground,
 } from 'react-native';
 
-export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
+export default class ScreenChiTietGiaoDichNapTien extends React.Component {
   static navigationOptions = ({navigationOptions}) => {
     console.log(navigationOptions);
     return {
@@ -62,7 +62,7 @@ export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
               </View>
               <View style={{marginVertical: 12, marginHorizontal: 20}}>
                 <Text style={styles.value}>
-                  THANH TOAN HOA DON TIEN DIEN THANG 10/2019
+                  NAP TIEN DIEN THOAI - 038 674 4772
                 </Text>
               </View>
               <View style={styles.line} />
@@ -73,16 +73,14 @@ export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{}}>
+              <View style={{marginTop: -10}}>
                 <Text style={styles.title}>Số tiền</Text>
               </View>
               <View style={{marginTop: 7, marginHorizontal: 20}}>
-                <Text style={styles.value}>576,340 VND</Text>
+                <Text style={styles.value}>100,000 VND</Text>
               </View>
               <View style={{marginVertical: 4, marginHorizontal: 20}}>
-                <Text style={styles.description}>
-                  Năm trăm bảy mươi sáu nghìn ba trăm bốn mươi đồng
-                </Text>
+                <Text style={styles.description}>Một trăm nghìn đồng</Text>
               </View>
               <View style={styles.line} />
             </View>

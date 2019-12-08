@@ -14,3 +14,8 @@ export { default as ChiTietThe } from './quan-li-the/chi-tiet-the';
 export { default as ThanhToanHoaDon } from './thanh-toan-hoa-don/thanh-toan-hoa-don.js';
 export { default as NhapHoaDonDien } from './thanh-toan-hoa-don/hoa-don-tien-dien/nhap-hoa-don-dien.js';
 export { default as ChiTietGiaoDichHoaDon } from './thanh-toan-hoa-don/hoa-don-tien-dien/chi-tiet-giao-dich.js';
+export { default as NhapNapTienDienThoai } from './thanh-toan-hoa-don/nap-tien-dien-thoai/nhap-nap-tien-dien-thoai.js';
+export { default as XacNhanNapTienDienThoai } from './thanh-toan-hoa-don/nap-tien-dien-thoai/xac-nhan-nap-tien.js';
+export { default as XacNhanMuaMaThe } from './thanh-toan-hoa-don/nap-tien-dien-thoai/xac-nhan-mua-ma-the.js';
+export { default as ChiTietGiaoDichNapTien } from './thanh-toan-hoa-don/nap-tien-dien-thoai/chi-tiet-giao-dich-nap-tien.js';
+export { default as ChiTietGiaoDichMuaMaThe  } from './thanh-toan-hoa-don/nap-tien-dien-thoai/chi-tiet-giao-dich-mua-ma-the.js';
