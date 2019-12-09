@@ -43,10 +43,21 @@ export default class ScreenDanhSachThe extends React.Component {
 
   state = {
     isModalVisible: false,
+    pageCount: 1,
   };
 
   _toggleModal = () => {
     this.setState({isModalVisible: !this.state.isModalVisible});
+  };
+
+  prePageCount = () => {
+    let x = this.state.pageCount - 1;
+    this.setState({pageCount: x < 1 ? 1 : x});
+  };
+
+  nextPageCount = () => {
+    let x = this.state.pageCount + 1;
+    this.setState({pageCount: x > 10 ? 10 : x});
   };
 
   getInitialState() {
@@ -95,18 +106,28 @@ export default class ScreenDanhSachThe extends React.Component {
           </View>
         </TouchableHighlight>
 
-        <View style={{paddingTop: 130, alignItems: 'center'}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+            marginBottom: 20,
+            alignItems: 'center',
+          }}>
           <View style={{flexDirection: 'row'}}>
-            <TouchableHighlight underlayColor="#fff">
+            <TouchableHighlight
+              underlayColor="#fff"
+              onPress={() => this.prePageCount()}>
               <ImageBackground
                 source={require('app/src/assets/icons/back.png')}
                 style={styles.iconMovePage}
               />
             </TouchableHighlight>
             <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
-              Trang 1/10
+              Trang {this.state.pageCount}/10
             </Text>
-            <TouchableHighlight underlayColor="#fff">
+            <TouchableHighlight
+              underlayColor="#fff"
+              onPress={() => this.nextPageCount()}>
               <ImageBackground
                 source={require('app/src/assets/icons/next.png')}
                 style={styles.iconMovePage}

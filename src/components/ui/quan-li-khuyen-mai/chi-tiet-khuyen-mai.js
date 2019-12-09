@@ -56,23 +56,23 @@ export default class ScreenChiTietKhuyenMai extends React.Component {
             }}>
             Ưu Đãi Khách Hàng Ưu Tiên Mới
           </Text>
-          <Text style={{fontSize: 16, marginTop: 6}}>
+          <Text style={{fontSize: 14, marginTop: 6}}>
             Đăng ngày: 10/11/2019
           </Text>
-          <Text style={{fontSize: 18, marginTop: 12}}>
+          <Text style={{fontSize: 16, marginTop: 25}}>
             Sở hữu ngay vali cao cấp khi trở thành Khách Hàng Ưu Tiên mới.
           </Text>
-          <Text style={{fontSize: 18, marginTop: 12, fontWeight: 'bold'}}>
+          <Text style={{fontSize: 16, marginTop: 12, fontWeight: 'bold'}}>
             Chương trình kéo dài từ nay đến 31/12/2019 (hoặc khi nào hết ngân
             sách)
           </Text>
-          <Text style={{fontSize: 18, marginTop: 12}}>
+          <Text style={{fontSize: 16, marginTop: 12}}>
             - Số dư tại thời điểm xét từ 2 đến 5 tỷ - tặng Vali 20"
           </Text>
-          <Text style={{fontSize: 18}}>
+          <Text style={{fontSize: 16}}>
             - Số dư tại thời điểm xét từ 5 tỷ trở lên - tặng Vali 50"
           </Text>
-          <Text style={{fontSize: 18, marginTop: 12, fontWeight: 'bold'}}>
+          <Text style={{fontSize: 16, marginTop: 12, fontWeight: 'bold'}}>
             Mọi chi tiết xin liên hệ Contact Center 24/7 18000069.
           </Text>
         </View>

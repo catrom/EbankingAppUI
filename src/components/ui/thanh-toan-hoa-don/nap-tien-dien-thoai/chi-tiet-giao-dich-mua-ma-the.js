@@ -14,6 +14,7 @@ export default class ScreenChiTietGiaoDichMuaMaThe extends React.Component {
     return {
       // title: navigation.getParam('otherParam', 'A Nested Details Screen'),
       title: 'CHI TIẾT GIAO DỊCH',
+      headerLeft: null,
     };
   };
 

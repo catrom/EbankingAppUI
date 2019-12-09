@@ -17,6 +17,20 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
     };
   };
 
+  state = {
+    pageCount: 1,
+  };
+
+  prePageCount = () => {
+    let x = this.state.pageCount - 1;
+    this.setState({pageCount: x < 1 ? 1 : x});
+  };
+
+  nextPageCount = () => {
+    let x = this.state.pageCount + 1;
+    this.setState({pageCount: x > 10 ? 10 : x});
+  };
+
   render() {
     /* 2. Get the param, provide a fallback value if not available */
     // eslint-disable-next-line no-unused-vars
@@ -59,7 +73,7 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={styles.title}>
-                  Chương Trình Tích Luỹ Điểm Đổi Quà
+                  Thông Báo Thay Đổi Hạn Mức Tiền Gửi...
                 </Text>
                 <ImageBackground
                   source={require('app/src/assets/icons/next.png')}
@@ -103,53 +117,39 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight
-          style={{paddingTop: 15, alignItems: 'center'}}
-          underlayColor="rgba(187, 191, 193, 0.2)">
-          <View style={styles.buttonNext}>
-            <Text style={styles.textInButton}>Xem tiếp...</Text>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+            marginBottom: 20,
+            alignItems: 'center',
+          }}>
+          <View style={{flexDirection: 'row'}}>
+            <TouchableHighlight
+              underlayColor="#fff"
+              onPress={() => this.prePageCount()}>
+              <ImageBackground
+                source={require('app/src/assets/icons/back.png')}
+                style={styles.iconMovePage}
+              />
+            </TouchableHighlight>
+            <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
+              Trang {this.state.pageCount}/10
+            </Text>
+            <TouchableHighlight
+              underlayColor="#fff"
+              onPress={() => this.nextPageCount()}>
+              <ImageBackground
+                source={require('app/src/assets/icons/next.png')}
+                style={styles.iconMovePage}
+              />
+            </TouchableHighlight>
           </View>
-        </TouchableHighlight>
+        </View>
       </View>
     );
   }
 }
-
-// class PromotionItem extends React.PureComponent {
-//   render() {
-//     const title = this.props.title;
-//     const date = this.props.date;
-//     const image = this.props.image;
-
-//     return (
-//       <TouchableHighlight
-//         onPress={() =>
-//           this.props.navigation.push('ChiTietKhuyenMai', {
-//             itemId: Math.floor(Math.random() * 100),
-//           })
-//         }
-//         underlayColor="rgba(218, 218, 218, 1)">
-//         <View style={styles.itemContainer}>
-//           <View style={{marginTop: 15, marginLeft: 5, marginRight: 5}}>
-//             <View
-//               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-//               <Text style={styles.title}>{title}</Text>
-//               <ImageBackground
-//                 source={require('app/src/assets/icons/next.png')}
-//                 style={styles.icon}
-//               />
-//             </View>
-//             <Text style={styles.date}>{date}</Text>
-//           </View>
-
-//           <View style={{marginTop: 10}}>
-//             <ImageBackground source={image} style={styles.image} />
-//           </View>
-//         </View>
-//       </TouchableHighlight>
-//     );
-//   }
-// }
 
 const styles = StyleSheet.create({
   container: {
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'rgba(218, 218, 218, 0.5)',
     height: 180,
-    marginTop: 15,
+    marginTop: 20,
     marginLeft: 15,
     marginRight: 15,
   },
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   image: {
     resizeMode: 'stretch',
     justifyContent: 'center',
-    height: 110,
+    height: 105,
   },
   buttonNext: {
     margin: 7,
@@ -199,6 +199,11 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   icon: {
+    height: 26,
+    width: 26,
+    resizeMode: 'stretch',
+  },
+  iconMovePage: {
     height: 26,
     width: 26,
     resizeMode: 'stretch',
