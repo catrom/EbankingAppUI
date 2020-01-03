@@ -203,8 +203,8 @@ const styles = StyleSheet.create({
     margin: 15,
   },
   iconOnBanner: {
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     resizeMode: 'stretch',
   },
   iconOnButton: {
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   buttonDanhSachThe: {
     width: 144,
     height: 188,
-    backgroundColor: 'rgba(5, 43, 78, 1)',
+    backgroundColor: 'rgba(5, 43, 78, 0.9)',
     margin: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
-    elevation: 5,
+    elevation: 3,
   },
   textInButton: {
     fontSize: 18,

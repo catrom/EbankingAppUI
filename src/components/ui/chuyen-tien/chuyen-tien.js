@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableHighlight,
   Modal,
+  ScrollView,
 } from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown';
 import RadioForm, {
@@ -121,6 +122,10 @@ export default class ScreenChuyenTien extends React.Component {
   state = {
     isModalVisible: false,
     textLength: 0,
+    soTien: '',
+    showMoneyDescription: false,
+    phamViChuyenTien: '',
+    value: 0,
   };
 
   toggleModal = () => {
@@ -143,286 +148,343 @@ export default class ScreenChuyenTien extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.box}>
-          <View style={styles.inputContainer}>
-            <View style={styles.textContainer}>
-              <View style={{}}>
-                <Text style={styles.title}>Tài khoản</Text>
+        <ScrollView>
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Tài khoản</Text>
+                </View>
+                <Dropdown
+                  dropdownOffset={{top: 100}}
+                  rippleCentered={true}
+                  data={dataAccount}
+                  renderBase={renderBase}
+                  itemTextStyle={styles.value}
+                  subtitleStyle={styles.description}
+                  itemPadding={15}
+                />
               </View>
-              <Dropdown
-                dropdownOffset={{top: 100}}
-                rippleCentered={true}
-                data={dataAccount}
-                renderBase={renderBase}
-                itemTextStyle={styles.value}
-                subtitleStyle={styles.description}
-                itemPadding={15}
-              />
             </View>
+            <View style={styles.line} />
           </View>
-          <View style={styles.line} />
-        </View>
 
-        <View style={styles.box}>
-          <View style={styles.inputContainer}>
-            <View style={styles.textContainer}>
-              <View style={{}}>
-                <Text style={styles.title}>Phạm vi chuyển tiền</Text>
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Phạm vi chuyển tiền</Text>
+                </View>
+                <Dropdown
+                  dropdownOffset={{top: 100}}
+                  rippleCentered={true}
+                  data={dataBank}
+                  renderBase={renderBase}
+                  itemTextStyle={styles.value}
+                  itemPadding={15}
+                  onChangeText={e =>
+                    this.setState({phamViChuyenTien: e.account})
+                  }
+                />
               </View>
-              <Dropdown
-                dropdownOffset={{top: 100}}
-                rippleCentered={true}
-                data={dataBank}
-                renderBase={renderBase}
-                itemTextStyle={styles.value}
-                itemPadding={15}
-              />
             </View>
+            <View style={styles.line} />
           </View>
-          <View style={styles.line} />
-        </View>
 
-        <View style={styles.box}>
-          <View style={styles.inputContainer}>
-            <View style={styles.textContainer}>
-              <View style={{}}>
-                <Text style={styles.title}>Tài khoản thụ hưởng</Text>
-              </View>
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Tài khoản thụ hưởng</Text>
+                </View>
 
-              <TouchableHighlight
-                underlayColor="#fff"
-                onPress={() =>
-                  this.props.navigation.push('ChonTaiKhoanThuHuong', {
-                    itemId: Math.floor(Math.random() * 100),
-                  })
-                }>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={{flexDirection: 'column', width: 355}}>
-                    <View style={{marginTop: 4, marginHorizontal: 20}}>
-                      <Text style={styles.value} />
-                    </View>
-                    <View style={{marginVertical: 2, marginHorizontal: 20}}>
-                      <Text style={styles.description} />
+                <TouchableHighlight
+                  underlayColor="#fff"
+                  onPress={() =>
+                    this.props.navigation.push('ChonTaiKhoanThuHuong', {
+                      itemId: Math.floor(Math.random() * 100),
+                      phamViChuyenTien: this.state.phamViChuyenTien,
+                    })
+                  }>
+                  <View style={{flexDirection: 'row'}}>
+                    {this.props.navigation.state.params.doiTuongThuHuong ? (
+                      <View style={styles.dropdownContainer}>
+                        <View style={{}}>
+                          <Text style={styles.value}>
+                            {
+                              this.props.navigation.state.params
+                                .doiTuongThuHuong.name
+                            }
+                          </Text>
+                        </View>
+                        <View style={{paddingTop: -1}}>
+                          <Text style={styles.description}>
+                            {
+                              this.props.navigation.state.params
+                                .doiTuongThuHuong.stk
+                            }
+                          </Text>
+                        </View>
+                      </View>
+                    ) : (
+                      <View style={{flexDirection: 'column', width: 355}}>
+                        <View style={{marginTop: 4, marginHorizontal: 20}}>
+                          <Text style={styles.value} />
+                        </View>
+                        <View style={{marginVertical: 2, marginHorizontal: 20}}>
+                          <Text style={styles.description} />
+                        </View>
+                      </View>
+                    )}
+                    <View style={{marginTop: 5}}>
+                      <ImageBackground
+                        source={require('app/src/assets/icons/dropdown.png')}
+                        style={[styles.icon, styles.iconRotate]}
+                      />
                     </View>
                   </View>
-                  <View style={{marginTop: 5}}>
-                    <ImageBackground
-                      source={require('app/src/assets/icons/dropdown.png')}
-                      style={[styles.icon, styles.iconRotate]}
-                    />
+                </TouchableHighlight>
+
+                <View style={styles.line} />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Số tiền</Text>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={{flexDirection: 'column', width: 330}}>
+                    <View style={{marginHorizontal: 10}}>
+                      <TextInput
+                        style={{
+                          fontSize: 16,
+                          height: 20,
+                          fontWeight: 'bold',
+                          paddingVertical: -5,
+                          paddingLeft: -2,
+                        }}
+                        keyboardType={'numeric'}
+                        value={this.state.soTien
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                        onChangeText={e => {
+                          const value = e.replace(/,/g, '');
+                          if (/^[0-9]*$/g.test(value)) {
+                            this.setState({soTien: value});
+                          }
+                        }}
+                        onSubmitEditing={e =>
+                          this.setState({
+                            showMoneyDescription: !this.state
+                              .showMoneyDescription,
+                          })
+                        }
+                      />
+                    </View>
+                    {this.state.showMoneyDescription ? (
+                      <View style={{marginVertical: 4, marginHorizontal: 10}}>
+                        <Text style={styles.description}>
+                          Phí chuyển: 11,000 VND
+                        </Text>
+                        <Text style={styles.description}>
+                          Tổng tiền:{' '}
+                          {` ${(parseInt(this.state.soTien, 10) + 11000)
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} VND`}
+                        </Text>
+                      </View>
+                    ) : (
+                      <View style={{marginVertical: 4, marginHorizontal: 10}}>
+                        <Text style={styles.description} />
+                      </View>
+                    )}
+                  </View>
+                  <View
+                    style={{
+                      marginHorizontal: 5,
+                      width: 1,
+                      height: 20,
+                      backgroundColor: 'black',
+                    }}
+                  />
+                  <View>
+                    <Text styles={{fontSize: 16, color: 'black'}}>VND</Text>
                   </View>
                 </View>
-              </TouchableHighlight>
 
-              <View style={styles.line} />
+                <View style={styles.line} />
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={styles.box}>
-          <View style={styles.inputContainer}>
-            <View style={styles.textContainer}>
-              <View style={{}}>
-                <Text style={styles.title}>Số tiền</Text>
+          {this.state.showMoneyDescription ? (
+            <View style={{height: 12}} />
+          ) : null}
+
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Đối tượng chịu phí</Text>
+                </View>
+                <View style={{alignItems: 'center', marginLeft: -70}}>
+                  <RadioForm formHorizontal={true} animation={true}>
+                    {/* To create radio buttons, loop through your array of options */}
+                    {radio_props.map((obj, i) => (
+                      <RadioButton labelHorizontal={true} key={i}>
+                        {/*  You can set RadioButtonLabel before RadioButtonInput */}
+                        <RadioButtonInput
+                          obj={obj}
+                          index={i}
+                          isSelected={this.state.value === i}
+                          onPress={value => {
+                            this.setState({value: value});
+                          }}
+                          borderWidth={2}
+                          buttonInnerColor={'black'}
+                          buttonOuterColor={
+                            this.state.value === i ? 'black' : '#000'
+                          }
+                          buttonSize={9}
+                          buttonOuterSize={15}
+                          buttonStyle={{marginBottom: 10}}
+                          buttonWrapStyle={{
+                            marginLeft: 60,
+                            marginRight: 10,
+                            marginTop: 12,
+                            marginBottom: 8,
+                          }}
+                        />
+                        <RadioButtonLabel
+                          obj={obj}
+                          index={i}
+                          labelHorizontal={false}
+                          onPress={value => {
+                            this.setState({value: value});
+                          }}
+                          labelStyle={{
+                            fontSize: 16,
+                            color: 'black',
+                            marginTop: -5,
+                          }}
+                        />
+                      </RadioButton>
+                    ))}
+                  </RadioForm>
+                </View>
+
+                <View style={styles.line} />
               </View>
-              <View style={{flexDirection: 'row'}}>
-                <View style={{flexDirection: 'column', width: 330}}>
-                  <View style={{marginHorizontal: 10}}>
-                    <TextInput
-                      style={{
-                        fontSize: 16,
-                        height: 20,
-                        fontWeight: 'bold',
-                        paddingVertical: -5,
-                        paddingLeft: -2,
-                      }}
-                      keyboardType={'numeric'}
-                      // value={this.state.customerIDInput}
-                      // onChangeText={text => this.onChangeText(text)}
-                    />
-                  </View>
-                  <View style={{marginVertical: 4, marginHorizontal: 10}}>
-                    <Text style={styles.description}>
-                      Năm trăm bảy mươi sáu nghìn đồng
+            </View>
+          </View>
+
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={styles.title}>Nội dung</Text>
+                  <View
+                    style={{
+                      flexDirection: 'row-reverse',
+                      flex: 1,
+                      justifyContent: 'flex-start',
+                      alignItems: 'center',
+                    }}>
+                    <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.54)'}}>
+                      {this.state.textLength}/{this.maxLength}
                     </Text>
                   </View>
                 </View>
-                <View
-                  style={{
-                    marginHorizontal: 5,
-                    width: 1,
-                    height: 20,
-                    backgroundColor: 'black',
-                  }}
-                />
-                <View>
-                  <Text styles={{fontSize: 16, color: 'black'}}>VND</Text>
+                <View style={{marginHorizontal: 10}}>
+                  <TextInput
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 'bold',
+                      paddingVertical: -5,
+                      paddingLeft: -2,
+                    }}
+                    onChangeText={text => this.onChangeText(text)}
+                    multiline
+                    numberOfLines={3}
+                    disableFullscreenUI={false}
+                    autoCapitalize={'characters'}
+                  />
                 </View>
+                <View style={styles.line} />
               </View>
-
-              <View style={styles.line} />
             </View>
           </View>
-        </View>
 
-        <View style={styles.box}>
-          <View style={styles.inputContainer}>
-            <View style={styles.textContainer}>
-              <View style={{}}>
-                <Text style={styles.title}>Đối tượng chịu phí</Text>
+          <View style={{flex: 1, justifyContent: 'flex-end', marginTop: 30}}>
+            <TouchableHighlight
+              style={{paddingTop: 15, alignItems: 'center'}}
+              underlayColor="rgba(187, 191, 193, 0.2)"
+              onPress={() =>
+                this.props.navigation.push('XacNhanChuyenTien', {
+                  itemId: Math.floor(Math.random() * 100),
+                })
+              }>
+              <View style={styles.buttonThanhToan}>
+                <Text
+                  style={{fontSize: 20, color: '#fff', textAlign: 'center'}}>
+                  Tiếp tục
+                </Text>
               </View>
-              <View style={{alignItems: 'center', marginLeft: -70}}>
-                <RadioForm formHorizontal={true} animation={true}>
-                  {/* To create radio buttons, loop through your array of options */}
-                  {radio_props.map((obj, i) => (
-                    <RadioButton labelHorizontal={true} key={i}>
-                      {/*  You can set RadioButtonLabel before RadioButtonInput */}
-                      <RadioButtonInput
-                        obj={obj}
-                        index={i}
-                        isSelected={this.state.value === i}
-                        onPress={value => {
-                          this.setState({value: value});
-                        }}
-                        borderWidth={2}
-                        buttonInnerColor={'black'}
-                        buttonOuterColor={
-                          this.state.value === i ? 'black' : '#000'
-                        }
-                        buttonSize={9}
-                        buttonOuterSize={15}
-                        buttonStyle={{marginBottom: 10}}
-                        buttonWrapStyle={{
-                          marginLeft: 60,
-                          marginRight: 10,
-                          marginTop: 12,
-                          marginBottom: 8,
-                        }}
-                      />
-                      <RadioButtonLabel
-                        obj={obj}
-                        index={i}
-                        labelHorizontal={false}
-                        onPress={value => {
-                          this.setState({value: value});
-                        }}
-                        labelStyle={{
-                          fontSize: 16,
-                          color: 'black',
-                          marginTop: -5,
-                        }}
-                      />
-                    </RadioButton>
-                  ))}
-                </RadioForm>
-              </View>
-
-              <View style={styles.line} />
-            </View>
+            </TouchableHighlight>
           </View>
-        </View>
 
-        <View style={styles.box}>
-          <View style={styles.inputContainer}>
-            <View style={styles.textContainer}>
-              <View style={{flexDirection: 'row'}}>
-                <Text style={styles.title}>Nội dung</Text>
+          <Modal visible={this.state.isModalVisible} transparent={true}>
+            <View style={styles.modal}>
+              <View style={styles.viewInModal}>
                 <View
                   style={{
-                    flexDirection: 'row-reverse',
-                    flex: 1,
-                    justifyContent: 'flex-start',
-                    alignItems: 'center',
+                    height: 50,
+                    backgroundColor: '#2D3841',
+                    justifyContent: 'center',
                   }}>
-                  <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.54)'}}>
-                    {this.state.textLength}/{this.maxLength}
+                  <Text style={{fontSize: 17, color: '#fff', marginLeft: 20}}>
+                    XÁC NHẬN
                   </Text>
                 </View>
-              </View>
-              <View style={{marginHorizontal: 10}}>
-                <TextInput
+                <View style={{margin: 20}}>
+                  <Text style={{fontSize: 16, color: 'black'}}>
+                    Bạn có chắc chắn muốn huỷ giao dịch này?
+                  </Text>
+                </View>
+                <View
                   style={{
-                    fontSize: 16,
-                    fontWeight: 'bold',
-                    paddingVertical: -5,
-                    paddingLeft: -2,
-                  }}
-                  onChangeText={text => this.onChangeText(text)}
-                  multiline
-                  numberOfLines={3}
-                  disableFullscreenUI={false}
-                  autoCapitalize={'characters'}
-                />
-              </View>
-              <View style={styles.line} />
-            </View>
-          </View>
-        </View>
-
-        <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 30}}>
-          <TouchableHighlight
-            style={{paddingTop: 15, alignItems: 'center'}}
-            underlayColor="rgba(187, 191, 193, 0.2)"
-            onPress={() =>
-              this.props.navigation.push('XacNhanChuyenTien', {
-                itemId: Math.floor(Math.random() * 100),
-              })
-            }>
-            <View style={styles.buttonThanhToan}>
-              <Text style={{fontSize: 20, color: '#fff', textAlign: 'center'}}>
-                Tiếp tục
-              </Text>
-            </View>
-          </TouchableHighlight>
-        </View>
-
-        <Modal visible={this.state.isModalVisible} transparent={true}>
-          <View style={styles.modal}>
-            <View style={styles.viewInModal}>
-              <View
-                style={{
-                  height: 50,
-                  backgroundColor: '#2D3841',
-                  justifyContent: 'center',
-                }}>
-                <Text style={{fontSize: 17, color: '#fff', marginLeft: 20}}>
-                  XÁC NHẬN
-                </Text>
-              </View>
-              <View style={{margin: 20}}>
-                <Text style={{fontSize: 16, color: 'black'}}>
-                  Bạn có chắc chắn muốn huỷ giao dịch này?
-                </Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  marginTop: 45,
-                }}>
-                <TouchableHighlight
-                  onPress={() => this.toggleModal()}
-                  underlayColor="#fff">
-                  <View style={[styles.btnModal, styles.btnHuyBo]}>
-                    <Text style={styles.textInButtonModal}>Huỷ bỏ</Text>
-                  </View>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  onPress={() => {
-                    this.toggleModal();
-                    this.props.navigation.navigate('Home', {
-                      itemId: Math.floor(Math.random() * 100),
-                    });
-                  }}
-                  underlayColor="#fff">
-                  <View style={[styles.btnModal, styles.btnDongY]}>
-                    <Text style={styles.textInButtonModal}>Đồng ý</Text>
-                  </View>
-                </TouchableHighlight>
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    marginTop: 45,
+                  }}>
+                  <TouchableHighlight
+                    onPress={() => this.toggleModal()}
+                    underlayColor="#fff">
+                    <View style={[styles.btnModal, styles.btnHuyBo]}>
+                      <Text style={styles.textInButtonModal}>Huỷ bỏ</Text>
+                    </View>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    onPress={() => {
+                      this.toggleModal();
+                      this.props.navigation.navigate('Home', {
+                        itemId: Math.floor(Math.random() * 100),
+                      });
+                    }}
+                    underlayColor="#fff">
+                    <View style={[styles.btnModal, styles.btnDongY]}>
+                      <Text style={styles.textInButtonModal}>Đồng ý</Text>
+                    </View>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
-          </View>
-        </Modal>
+          </Modal>
+        </ScrollView>
       </View>
     );
   }

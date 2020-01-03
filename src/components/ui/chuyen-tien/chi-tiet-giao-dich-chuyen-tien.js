@@ -58,22 +58,25 @@ export default class ScreenChiTietGiaoDichChuyenTien extends React.Component {
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{}}>
-                <Text style={styles.title}>Nội dung</Text>
+              <View style={{marginTop: 20}}>
+                <Text style={styles.title}>Tài khoản nguồn</Text>
               </View>
-              <View style={{marginVertical: 12, marginHorizontal: 20}}>
-                <Text style={styles.value}>CHUYEN TIEN MUA LAPTOP</Text>
+              <View style={{marginTop: 7, marginHorizontal: 20}}>
+                <Text style={styles.value}>TK-0400.10148.54755</Text>
+              </View>
+              <View style={{marginVertical: 4, marginHorizontal: 20}}>
+                <Text style={styles.description}>Số dư: 19,200,000 VND</Text>
               </View>
               <View style={styles.line} />
             </View>
           </View>
         </View>
 
-        <View style={styles.box}>
+        <View style={(styles.box, {marginTop: 20, marginBottom: 10})}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{marginTop: -20}}>
-                <Text style={styles.title}>Số tài khoản người nhận</Text>
+              <View style={{}}>
+                <Text style={styles.title}>Tài khoản thụ hưởng</Text>
               </View>
               <View style={{marginTop: 7, marginHorizontal: 20}}>
                 <Text style={styles.value}>TK-0400.10148.54755</Text>
@@ -89,7 +92,28 @@ export default class ScreenChiTietGiaoDichChuyenTien extends React.Component {
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{marginTop: -30}}>
+              <View style={{}}>
+                <Text style={styles.title}>Số tiền</Text>
+              </View>
+              <View style={{marginTop: 7, marginHorizontal: 20}}>
+                <Text style={[styles.value, {fontSize: 18}]}>
+                  2,500,000 VND
+                </Text>
+              </View>
+              <View style={{marginVertical: 4, marginHorizontal: 20}}>
+                <Text style={[styles.description]}>
+                  Hai triệu năm trăm nghìn đồng
+                </Text>
+              </View>
+              <View style={styles.line} />
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.inputContainer}>
+            <View style={styles.textContainer}>
+              <View style={{marginTop: 5}}>
                 <Text style={styles.title}>Phí dịch vụ</Text>
               </View>
               <View style={{marginVertical: 12, marginHorizontal: 20}}>
@@ -103,18 +127,11 @@ export default class ScreenChiTietGiaoDichChuyenTien extends React.Component {
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{marginTop: -45}}>
-                <Text style={styles.title}>Số tiền</Text>
+              <View style={{}}>
+                <Text style={styles.title}>Nội dung</Text>
               </View>
-              <View style={{marginTop: 7, marginHorizontal: 20}}>
-                <Text style={[styles.value, {fontSize: 18}]}>
-                  2,500,000 VND
-                </Text>
-              </View>
-              <View style={{marginVertical: 4, marginHorizontal: 20}}>
-                <Text style={[styles.description, {fontSize: 11}]}>
-                  Hai triệu năm trăm nghìn đồng
-                </Text>
+              <View style={{marginVertical: 12, marginHorizontal: 20}}>
+                <Text style={styles.value}>CHUYEN TIEN MUA LAPTOP</Text>
               </View>
               <View style={styles.line} />
             </View>
@@ -153,7 +170,6 @@ const styles = StyleSheet.create({
   box: {
     flexDirection: 'column',
     height: 87,
-    marginTop: 20,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -176,7 +192,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   description: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: 'normal',
     color: 'rgba(0, 0, 0, 0.60)',
   },

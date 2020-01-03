@@ -9,10 +9,19 @@ import {
   TouchableHighlight,
   Modal,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown';
 import {TabView, SceneMap} from 'react-native-tab-view';
 import Animated from 'react-native-reanimated';
+
+let citiesData = [
+  {value: {account: 'Hà Nội', amount: ''}},
+  {value: {account: 'Hải Phòng', amount: ''}},
+  {value: {account: 'Đà Nẵng', amount: ''}},
+  {value: {account: 'Huế', amount: ''}},
+  {value: {account: 'TP Hồ Chí Minh', amount: ''}},
+];
 
 let dataBanks = [
   {value: {account: 'Ngân hàng thương mại cổ phần Á châu - ACB', amount: ''}},
@@ -71,7 +80,7 @@ const renderBase = props => {
 
 export default class ScreenChonTaiKhoanThuHuong extends React.Component {
   static navigationOptions = ({navigationOptions}) => {
-    console.log(navigationOptions);
+    // console.log(navigationOptions);
     return {
       // title: navigation.getParam('otherParam', 'A Nested Details Screen'),
       title: 'ĐẾN THỤ HƯỞNG',
@@ -79,7 +88,10 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
   };
 
   state = {
+    showCards: true,
     showInfor: false,
+    doiTuongThuHuongName: '',
+    doiTuongThuHuongStk: '',
     index: 0,
     routes: [
       {key: 'TaiKhoan', title: 'Tài khoản'},
@@ -101,9 +113,17 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
             <TouchableOpacity
               style={styles.tabItem}
               onPress={() => this.setState({index: i})}>
-              <Animated.Text style={{color: 'black', fontSize: 16}}>
-                {route.title}
-              </Animated.Text>
+              {route.key ===
+              props.navigationState.routes[this.state.index].key ? (
+                <Animated.Text
+                  style={{color: 'black', fontSize: 16, fontWeight: '700'}}>
+                  {route.title}
+                </Animated.Text>
+              ) : (
+                <Animated.Text style={{color: 'black', fontSize: 16}}>
+                  {route.title}
+                </Animated.Text>
+              )}
             </TouchableOpacity>
           );
         })}
@@ -114,12 +134,43 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
   toggleInfor = () => {
     this.setState({
       showInfor: !this.state.showInfor,
+      doiTuongThuHuongName: 'DANG MINH TIEN',
+    });
+    Keyboard.dismiss();
+  };
+
+  toggleCard = () => {
+    this.setState({
+      showCards: !this.state.showCards,
     });
   };
 
   TaiKhoanView = () => {
     return (
       <View style={{paddingTop: 15, paddingHorizontal: 10}}>
+        {this.props.navigation.state.params.phamViChuyenTien ===
+        'Chuyển tiền liên ngân hàng' ? (
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Ngân hàng</Text>
+                </View>
+                <Dropdown
+                  dropdownOffset={{top: 100}}
+                  rippleCentered={true}
+                  data={dataBanks}
+                  renderBase={renderBase}
+                  itemTextStyle={styles.value}
+                  subtitleStyle={styles.description}
+                  itemPadding={15}
+                />
+              </View>
+            </View>
+            <View style={styles.line} />
+          </View>
+        ) : null}
+
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
@@ -136,6 +187,10 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
                       paddingVertical: -5,
                       paddingLeft: -2,
                     }}
+                    onFocus={() => this.toggleCard()}
+                    onChangeText={text =>
+                      this.setState({doiTuongThuHuongStk: 'STK-' + text})
+                    }
                   />
                 </View>
               </View>
@@ -159,6 +214,29 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
   TheNganHangView = () => {
     return (
       <View style={{paddingTop: 15, paddingHorizontal: 10}}>
+        {this.props.navigation.state.params.phamViChuyenTien ===
+        'Chuyển tiền liên ngân hàng' ? (
+          <View style={styles.box}>
+            <View style={styles.inputContainer}>
+              <View style={styles.textContainer}>
+                <View style={{}}>
+                  <Text style={styles.title}>Ngân hàng</Text>
+                </View>
+                <Dropdown
+                  dropdownOffset={{top: 100}}
+                  rippleCentered={true}
+                  data={dataBanks}
+                  renderBase={renderBase}
+                  itemTextStyle={styles.value}
+                  subtitleStyle={styles.description}
+                  itemPadding={15}
+                />
+              </View>
+            </View>
+            <View style={styles.line} />
+          </View>
+        ) : null}
+
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
@@ -175,6 +253,10 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
                       paddingVertical: -5,
                       paddingLeft: -2,
                     }}
+                    onFocus={() => this.toggleCard()}
+                    onChangeText={text =>
+                      this.setState({doiTuongThuHuongStk: 'So the-' + text})
+                    }
                   />
                 </View>
               </View>
@@ -202,7 +284,7 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
               <View style={{}}>
-                <Text style={styles.title}>Tìm số CMND/Hộ chiếu</Text>
+                <Text style={styles.title}>Tên người thụ hưởng</Text>
               </View>
               <View style={{paddingVertical: 10, paddingLeft: 12, width: 280}}>
                 <View style={{}}>
@@ -213,19 +295,41 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
                       paddingVertical: -5,
                       paddingLeft: -2,
                     }}
+                    onChangeText={text =>
+                      this.setState({doiTuongThuHuongName: text})
+                    }
                   />
                 </View>
               </View>
               <View style={styles.line} />
             </View>
-            <View>
-              <TouchableHighlight
-                onPress={() => this.toggleInfor()}
-                underlayColor="#fff">
-                <View style={[styles.btn, styles.btnKiemtra]}>
-                  <Text style={styles.textInButton}>Kiểm tra</Text>
+          </View>
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.inputContainer}>
+            <View style={styles.textContainer}>
+              <View style={{}}>
+                <Text style={styles.title}>Số CMND/Hộ chiếu</Text>
+              </View>
+              <View style={{paddingVertical: 10, paddingLeft: 12, width: 280}}>
+                <View style={{}}>
+                  <TextInput
+                    style={{
+                      fontSize: 18,
+                      height: 20,
+                      paddingVertical: -5,
+                      paddingLeft: -2,
+                    }}
+                    onChangeText={text =>
+                      this.setState({
+                        doiTuongThuHuongStk: 'CMND/Ho chieu-' + text,
+                      })
+                    }
+                  />
                 </View>
-              </TouchableHighlight>
+              </View>
+              <View style={styles.line} />
             </View>
           </View>
         </View>
@@ -270,6 +374,28 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
               <View style={styles.line} />
             </View>
           </View>
+        </View>
+
+        <View style={[styles.box, {marginTop: 5}]}>
+          <View style={styles.inputContainer}>
+            <View style={styles.textContainer}>
+              <View style={{}}>
+                <Text style={styles.title}>
+                  Nhận thụ hưởng tại tỉnh/thành phố
+                </Text>
+              </View>
+              <Dropdown
+                dropdownOffset={{top: 100}}
+                rippleCentered={true}
+                data={citiesData}
+                renderBase={renderBase}
+                itemTextStyle={styles.value}
+                subtitleStyle={styles.description}
+                itemPadding={15}
+              />
+            </View>
+          </View>
+          <View style={styles.line} />
         </View>
 
         <View style={styles.box}>
@@ -328,7 +454,16 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={{height: 400}}>
+        <View
+          style={{
+            height:
+              this.state.index === 2
+                ? 550
+                : this.props.navigation.state.params.phamViChuyenTien ===
+                  'Chuyển tiền liên ngân hàng'
+                ? 250
+                : 150,
+          }}>
           <TabView
             navigationState={this.state}
             renderScene={this._renderScene}
@@ -337,31 +472,85 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
           />
         </View>
 
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'flex-end',
-            marginHorizontal: 10,
-            marginBottom: 20,
-          }}>
-          {this.state.showInfor ? <InforAccount /> : <RecentlyCards />}
-
-          <TouchableHighlight
-            style={{paddingTop: 15, alignItems: 'center'}}
-            underlayColor="#fff"
-            onPress={() => {
-              this.props.navigation.push('ChuyenTien', {
-                itemId: Math.floor(Math.random() * 100),
-              });
-            }}
-            disabled={!this.state.showInfor}>
-            <View style={styles.buttonTieptuc}>
-              <Text style={{fontSize: 20, color: '#fff', textAlign: 'center'}}>
-                Tiếp tục
+        {this.state.index !== 2 &&
+        this.state.showCards &&
+        !this.state.showInfor ? (
+          <View style={{paddingHorizontal: 10}}>
+            <View style={{marginTop: 10}}>
+              <Text
+                style={{
+                  fontSize: 16,
+                  fontWeight: 'bold',
+                  color: 'rgba(0, 0, 0, 0.54)',
+                }}>
+                Chuyển tiền gần đây
               </Text>
             </View>
-          </TouchableHighlight>
-        </View>
+
+            <View style={{flexDirection: 'column', marginTop: 20}}>
+              <View style={{flexDirection: 'row'}}>
+                <Card
+                  name={'NG. THANH LUAN'}
+                  stk={'1214.00014.44589'}
+                  navigation={this.props.navigation}
+                />
+                <Card
+                  name={'DANG MINH TIEN'}
+                  stk={'7291.00000.80137'}
+                  navigation={this.props.navigation}
+                />
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                <Card
+                  name={'NGUYEN DONG QUAN'}
+                  stk={'1201.80137.11015'}
+                  navigation={this.props.navigation}
+                />
+                <Card
+                  name={'NGUYEN BA TUNG'}
+                  stk={'7829.82749.73321'}
+                  navigation={this.props.navigation}
+                />
+              </View>
+            </View>
+          </View>
+        ) : null}
+
+        {this.state.index !== 2 &&
+        this.state.showInfor &&
+        !this.state.showCards ? (
+          <InforAccount />
+        ) : null}
+
+        {this.state.showInfor || this.state.index === 2 ? (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-end',
+              marginHorizontal: 10,
+              marginBottom: 20,
+            }}>
+            <TouchableHighlight
+              style={{paddingTop: 15, alignItems: 'center'}}
+              underlayColor="#fff"
+              onPress={() => {
+                this.props.navigation.push('ChuyenTien', {
+                  itemId: Math.floor(Math.random() * 100),
+                  doiTuongThuHuong: {
+                    name: this.state.doiTuongThuHuongName,
+                    stk: this.state.doiTuongThuHuongStk,
+                  },
+                });
+              }}>
+              <View style={styles.buttonTieptuc}>
+                <Text
+                  style={{fontSize: 20, color: '#fff', textAlign: 'center'}}>
+                  Tiếp tục
+                </Text>
+              </View>
+            </TouchableHighlight>
+          </View>
+        ) : null}
       </View>
     );
   }
@@ -370,7 +559,7 @@ export default class ScreenChonTaiKhoanThuHuong extends React.Component {
 class InforAccount extends React.Component {
   render() {
     return (
-      <View>
+      <View style={{paddingHorizontal: 10}}>
         <View style={{}}>
           <Text
             style={{
@@ -424,40 +613,11 @@ class InforAccount extends React.Component {
   }
 }
 
-class RecentlyCards extends React.Component {
-  render() {
-    return (
-      <View>
-        <View style={{marginTop: 10}}>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: 'bold',
-              color: 'rgba(0, 0, 0, 0.54)',
-            }}>
-            Chuyển tiền gần đây
-          </Text>
-        </View>
-
-        <View style={{flexDirection: 'column', marginTop: 20}}>
-          <View style={{flexDirection: 'row'}}>
-            <Card name={'NG. THANH LUAN'} stk={'1214.00014.44589'} />
-            <Card name={'DANG MINH TIEN'} stk={'7291.00000.80137'} />
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Card name={'NGUYEN DONG QUAN'} stk={'1201.80137.11015'} />
-            <Card name={'NGUYEN BA TUNG'} stk={'7829.82749.73321'} />
-          </View>
-        </View>
-      </View>
-    );
-  }
-}
-
 class Card extends React.PureComponent {
   render() {
     const name = this.props.name;
     const stk = this.props.stk;
+    const navigation = this.props.navigation;
 
     return (
       <TouchableHighlight
@@ -470,8 +630,15 @@ class Card extends React.PureComponent {
           backgroundColor: 'rgba(210, 210, 210, 0.2)',
         }}
         underlayColor="#fff"
-        //onPress={() => (selectedCardIndex = {index})}
-      >
+        onPress={() =>
+          navigation.push('ChuyenTien', {
+            itemId: Math.floor(Math.random() * 100),
+            doiTuongThuHuong: {
+              name: name,
+              stk: 'STK-' + stk,
+            },
+          })
+        }>
         <View style={{flexDirection: 'column'}}>
           <Text
             style={{
@@ -508,6 +675,7 @@ const styles = StyleSheet.create({
     paddingBottom: 7,
     borderBottomWidth: 1,
     borderBottomColor: '#E1E1E1',
+    tintColor: 'white',
   },
   btn: {
     padding: 10,

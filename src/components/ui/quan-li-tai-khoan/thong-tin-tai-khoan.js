@@ -52,8 +52,8 @@ export default class ScreenThongTinTaiKhoan extends React.Component {
         }}>
         <ListItem item1={'Tên chủ tài khoản'} item2={'NGUYEN VAN LUAN'} />
         <ListItem item1={'Số tài khoản'} item2={'31410003191890'} />
-        <ListItem item1={'Số dư hiện tại'} item2={'8.935,103'} />
-        <ListItem item1={'Số dư khả dụng'} item2={'8.935,103'} />
+        <ListItem item1={'Số dư hiện tại'} item2={'8,935,103'} />
+        <ListItem item1={'Số dư khả dụng'} item2={'8,935,103'} />
         <ListItem item1={'Loại tiền'} item2={'VND'} />
         <ListItem item1={'Chi nhánh'} item2={'CN Đông Sài Gòn'} />
       </View>

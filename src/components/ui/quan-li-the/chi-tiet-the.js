@@ -18,11 +18,36 @@ export default class ScreenChiTietThe extends React.Component {
   };
 
   state = {
+    modalToggleCount: 0,
     isModalVisible: false,
+    pageCount: 1,
+    trangThai: 'Đang hoạt động',
   };
 
   toggleModal = () => {
-    this.setState({isModalVisible: !this.state.isModalVisible});
+    this.setState({modalToggleCount: this.state.modalToggleCount + 1});
+
+    if (this.state.modalToggleCount % 2 === 0) {
+      if (this.state.trangThai === 'Đang hoạt động') {
+        this.setState({trangThai: 'Đã khoá'});
+      } else {
+        this.setState({trangThai: 'Đang hoạt động'});
+      }
+    }
+
+    this.setState({
+      isModalVisible: !this.state.isModalVisible,
+    });
+  };
+
+  prePageCount = () => {
+    let x = this.state.pageCount - 1;
+    this.setState({pageCount: x < 1 ? 1 : x});
+  };
+
+  nextPageCount = () => {
+    let x = this.state.pageCount + 1;
+    this.setState({pageCount: x > 10 ? 10 : x});
   };
 
   render() {
@@ -78,7 +103,7 @@ export default class ScreenChiTietThe extends React.Component {
           </View>
           <View>
             <Text style={{fontSize: 18, color: '#1885EA', marginLeft: 10}}>
-              Đang hoạt động
+              {this.state.trangThai}
             </Text>
           </View>
         </View>
@@ -101,22 +126,31 @@ export default class ScreenChiTietThe extends React.Component {
           </View>
         </View>
 
-        <View style={{paddingTop: 10, alignItems: 'center'}}>
-          <View style={{flexDirection: 'row'}}>
+        <View
+          style={{
+            paddingTop: 10,
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}>
+          <TouchableHighlight
+            underlayColor="#fff"
+            onPress={() => this.prePageCount()}>
             <ImageBackground
               source={require('app/src/assets/icons/back.png')}
               style={styles.iconMovePage}
-              underlayColor="#fff"
             />
-            <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
-              Trang 1/10
-            </Text>
+          </TouchableHighlight>
+          <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
+            Trang {this.state.pageCount}/10
+          </Text>
+          <TouchableHighlight
+            underlayColor="#fff"
+            onPress={() => this.nextPageCount()}>
             <ImageBackground
               source={require('app/src/assets/icons/next.png')}
               style={styles.iconMovePage}
-              underlayColor="#fff"
             />
-          </View>
+          </TouchableHighlight>
         </View>
 
         <View style={styles.listTransactionItems}>

@@ -31,7 +31,13 @@ export default class ScreenDanhSachTaiKhoan extends React.Component {
       <View style={styles.container}>
         <Text style={styles.t2}> Tài khoản thanh toán </Text>
 
-        <TouchableHighlight underlayColor="rgba(187, 191, 193, 0.1)">
+        <TouchableHighlight
+          onPress={() =>
+            this.props.navigation.push('TaiKhoanThanhToan', {
+              itemId: Math.floor(Math.random() * 100),
+            })
+          }
+          underlayColor="rgba(187, 191, 193, 0.1)">
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.textContainer}>
@@ -78,7 +84,13 @@ export default class ScreenDanhSachTaiKhoan extends React.Component {
         </TouchableHighlight>
 
         <Text style={styles.t2}> Tài khoản tiết kiệm </Text>
-        <TouchableHighlight underlayColor="rgba(187, 191, 193, 0.1)">
+        <TouchableHighlight
+          onPress={() =>
+            this.props.navigation.push('TaiKhoanThanhToan', {
+              itemId: Math.floor(Math.random() * 100),
+            })
+          }
+          underlayColor="rgba(187, 191, 193, 0.1)">
           <View>
             <View style={styles.rowContainer}>
               <View style={styles.textContainer}>

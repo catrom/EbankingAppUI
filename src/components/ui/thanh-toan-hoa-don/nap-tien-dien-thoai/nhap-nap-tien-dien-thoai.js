@@ -144,6 +144,8 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
       },
       {key: 'MuaMaThe', title: 'Mua mã thẻ', navigation: this.props.navigation},
     ],
+    soTien: '',
+    showMoneyDescription: false,
   };
 
   _handleIndexChange = index => {
@@ -159,9 +161,17 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
             <TouchableOpacity
               style={styles.tabItem}
               onPress={() => this.setState({index: i})}>
-              <Animated.Text style={{color: 'black', fontSize: 16}}>
-                {route.title}
-              </Animated.Text>
+              {route.key ===
+              props.navigationState.routes[this.state.index].key ? (
+                <Animated.Text
+                  style={{color: 'black', fontSize: 16, fontWeight: '700'}}>
+                  {route.title}
+                </Animated.Text>
+              ) : (
+                <Animated.Text style={{color: 'black', fontSize: 16}}>
+                  {route.title}
+                </Animated.Text>
+              )}
             </TouchableOpacity>
           );
         })}
@@ -240,15 +250,25 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
                         paddingLeft: -2,
                       }}
                       keyboardType={'numeric'}
-                      // value={this.state.customerIDInput}
-                      // onChangeText={text => this.onChangeText(text)}
+                      onSubmitEditing={e =>
+                        this.setState({
+                          showMoneyDescription: !this.state
+                            .showMoneyDescription,
+                        })
+                      }
                     />
                   </View>
-                  <View style={{marginVertical: 4, marginHorizontal: 10}}>
-                    <Text style={styles.description}>
-                      Năm trăm bảy mươi sáu nghìn đồng
-                    </Text>
-                  </View>
+                  {this.state.showMoneyDescription ? (
+                    <View style={{marginVertical: 4, marginHorizontal: 10}}>
+                      <Text style={styles.description}>
+                        Năm trăm bảy mươi sáu nghìn đồng
+                      </Text>
+                    </View>
+                  ) : (
+                    <View style={{marginVertical: 4, marginHorizontal: 10}}>
+                      <Text style={styles.description} />
+                    </View>
+                  )}
                 </View>
                 <View
                   style={{
@@ -417,7 +437,7 @@ class Card extends React.PureComponent {
           justifyContent: 'center',
           marginRight: 20,
           marginTop: 20,
-          padding: 8,
+          padding: 5,
           alignItems: 'center',
           backgroundColor:
             selectedCardIndex === {index}

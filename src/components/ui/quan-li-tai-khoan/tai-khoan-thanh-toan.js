@@ -38,10 +38,17 @@ export default class ScreenTaiKhoanThanhToan extends React.Component {
             <TouchableOpacity
               style={styles.tabItem}
               onPress={() => this.setState({index: i})}>
-              <Animated.Text
-                style={{color: 'black', fontSize: 16, paddingTop: 50}}>
-                {route.title}
-              </Animated.Text>
+              {route.key ===
+              props.navigationState.routes[this.state.index].key ? (
+                <Animated.Text
+                  style={{color: 'black', fontSize: 16, fontWeight: '700'}}>
+                  {route.title}
+                </Animated.Text>
+              ) : (
+                <Animated.Text style={{color: 'black', fontSize: 16}}>
+                  {route.title}
+                </Animated.Text>
+              )}
             </TouchableOpacity>
           );
         })}
@@ -127,7 +134,7 @@ export default class ScreenTaiKhoanThanhToan extends React.Component {
               })
             }>
             <View style={styles.btnTaiKhoanThanhToan}>
-              <Text style={styles.textInButton}>Nạp tiền điện thoại</Text>
+              <Text style={styles.textInButton}>Nạp tiền</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
@@ -271,7 +278,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 7,
     width: 116,
-    height: 45,
+    height: 35,
     backgroundColor: '#2B3F51',
     alignItems: 'center',
     justifyContent: 'center',
