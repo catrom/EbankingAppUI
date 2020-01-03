@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableHighlight,
   Modal,
+  Keyboard,
 } from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown';
 import CheckBox from '@react-native-community/checkbox';
@@ -119,6 +120,8 @@ export default class ScreenNhapHoaDonDien extends React.Component {
     customerIDInput: '',
     billPicker: false,
     isModalVisible: false,
+    customerName: 'ĐẶNG MINH TIẾN',
+    canPress: false,
   };
 
   toggleModal = () => {
@@ -128,28 +131,39 @@ export default class ScreenNhapHoaDonDien extends React.Component {
   toggleSavedCustomer = () => {
     this.setState({
       showSavedCustomer: !this.state.showSavedCustomer,
-      showCustomerChecker: !this.state.showCustomerChecker,
+      showCustomerChecker: true,
       showBills: !this.state.showBills,
       showSaveCustomerOption: !this.state.showSaveCustomerOption,
+      customerName: 'ĐẶNG MINH TIẾN',
     });
+    Keyboard.dismiss();
   };
 
   onChangeText(text) {
     this.setState({
       customerIDInput: text,
+      canPress: text.length > 0,
     });
-  }
 
-  setCustomerIDInput = () => {
-    if (this.state.customerIDInput) {
+    if (text.length === 0) {
       this.setState({
-        customerIDInput: '',
-      });
-    } else {
-      this.setState({
-        customerIDInput: 'KH03847923',
+        showSavedCustomer: true,
+        showCustomerChecker: false,
+        showSaveCustomerOption: false,
+        showBills: false,
+        billPicker: false,
       });
     }
+  }
+
+  setCustomerIDInput = (name, id) => {
+    this.setState({
+      customerIDInput: id,
+      customerName: name,
+      showCustomerChecker: !this.state.showCustomerChecker,
+      showBills: !this.state.showBills,
+      showSavedCustomer: !this.state.showSavedCustomer,
+    });
   };
 
   setBillPicker = () => {
@@ -227,7 +241,9 @@ export default class ScreenNhapHoaDonDien extends React.Component {
 
                 {this.state.showCustomerChecker ? (
                   <View style={{flexDirection: 'row'}}>
-                    <Text style={styles.description}>Đặng Minh Tiến</Text>
+                    <Text style={styles.description}>
+                      {this.state.customerName}
+                    </Text>
                     <View style={{marginTop: -3, marginLeft: 5}}>
                       <ImageBackground
                         source={require('app/src/assets/icons/check_blue.png')}
@@ -252,7 +268,8 @@ export default class ScreenNhapHoaDonDien extends React.Component {
             <View>
               <TouchableHighlight
                 onPress={() => this.toggleSavedCustomer()}
-                underlayColor="#fff">
+                underlayColor="#fff"
+                disabled={!this.state.canPress}>
                 <View style={[styles.btn, styles.btnKiemtra]}>
                   <Text style={styles.textInButton}>Kiểm tra</Text>
                 </View>
@@ -287,7 +304,9 @@ export default class ScreenNhapHoaDonDien extends React.Component {
             <View style={{marginTop: 20}}>
               <TouchableHighlight
                 underlayColor="rgba(187, 191, 193, 0.1)"
-                onPress={() => this.setCustomerIDInput()}>
+                onPress={() =>
+                  this.setCustomerIDInput('NGUYỄN THÀNH LUÂN', 'KH09087662')
+                }>
                 <View>
                   <View
                     style={{
@@ -300,7 +319,7 @@ export default class ScreenNhapHoaDonDien extends React.Component {
                     <View style={{flex: 1}}>
                       <Text
                         style={{fontSize: 16, color: 'rgba(57, 57, 57, 1)'}}>
-                        NG. THANH LUAN
+                        NGUYỄN THÀNH LUÂN
                       </Text>
                       <Text
                         style={{fontSize: 16, color: 'rgba(57, 57, 57, 1)'}}
@@ -314,7 +333,11 @@ export default class ScreenNhapHoaDonDien extends React.Component {
               </TouchableHighlight>
             </View>
             <View style={{marginTop: 15}}>
-              <TouchableHighlight underlayColor="rgba(187, 191, 193, 0.1)">
+              <TouchableHighlight
+                underlayColor="rgba(187, 191, 193, 0.1)"
+                onPress={() =>
+                  this.setCustomerIDInput('NGUYỄN BÁ TÙNG', 'KH01508076')
+                }>
                 <View>
                   <View
                     style={{
@@ -327,7 +350,7 @@ export default class ScreenNhapHoaDonDien extends React.Component {
                     <View style={{flex: 1}}>
                       <Text
                         style={{fontSize: 16, color: 'rgba(57, 57, 57, 1)'}}>
-                        NG. BA TUNG
+                        NGUYỄN BÁ TÙNG
                       </Text>
                       <Text
                         style={{fontSize: 16, color: 'rgba(57, 57, 57, 1)'}}
@@ -386,6 +409,17 @@ export default class ScreenNhapHoaDonDien extends React.Component {
                 </TouchableHighlight>
               </View>
             </View>
+          </View>
+        ) : null}
+
+        {this.state.billPicker ? (
+          <View style={{marginTop: 15, marginLeft: 8}}>
+            <Text style={{fontSize: 15, color: 'rgba(57, 57, 57, 1)'}}>
+              Phí dịch vụ: 15,000 VND
+            </Text>
+            <Text style={{fontSize: 15, color: 'rgba(57, 57, 57, 1)'}}>
+              Tổng tiền: 591,340 VND
+            </Text>
           </View>
         ) : null}
 
