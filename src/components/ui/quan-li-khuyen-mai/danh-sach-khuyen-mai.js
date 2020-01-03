@@ -28,7 +28,7 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
 
   nextPageCount = () => {
     let x = this.state.pageCount + 1;
-    this.setState({pageCount: x > 10 ? 10 : x});
+    this.setState({pageCount: x > 1 ? 1 : x});
   };
 
   render() {
@@ -46,7 +46,7 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
           }
           underlayColor="rgba(218, 218, 218, 1)">
           <View style={styles.itemContainer}>
-            <View style={{marginTop: 15, marginLeft: 5, marginRight: 5}}>
+            <View style={{marginTop: 15, marginLeft: 15, marginRight: 5}}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={styles.title}>Ưu Đãi Khách Hàng Ưu Tiên Mới</Text>
@@ -67,13 +67,19 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight underlayColor="rgba(218, 218, 218, 1)">
+        <TouchableHighlight
+          onPress={() =>
+            this.props.navigation.push('ChiTietKhuyenMai', {
+              itemId: Math.floor(Math.random() * 100),
+            })
+          }
+          underlayColor="rgba(218, 218, 218, 1)">
           <View style={styles.itemContainer}>
-            <View style={{marginTop: 15, marginLeft: 5, marginRight: 5}}>
+            <View style={{marginTop: 15, marginLeft: 15, marginRight: 5}}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Text style={styles.title}>
-                  Thông Báo Thay Đổi Hạn Mức Tiền Gửi...
+                  Thông Báo Thay Đổi Hạn Mức Tiền Gửi
                 </Text>
                 <ImageBackground
                   source={require('app/src/assets/icons/next.png')}
@@ -85,14 +91,14 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
 
             <View style={{marginTop: 10}}>
               <ImageBackground
-                source={require('app/src/assets/images/promotion2.png')}
+                source={require('app/src/assets/images/promotion1.png')}
                 style={styles.image}
               />
             </View>
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight underlayColor="rgba(218, 218, 218, 1)">
+        {/* <TouchableHighlight underlayColor="rgba(218, 218, 218, 1)">
           <View style={styles.itemContainer}>
             <View style={{marginTop: 15, marginLeft: 5, marginRight: 5}}>
               <View
@@ -115,7 +121,7 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
               />
             </View>
           </View>
-        </TouchableHighlight>
+        </TouchableHighlight> */}
 
         <View
           style={{
@@ -134,7 +140,7 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
               />
             </TouchableHighlight>
             <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
-              Trang {this.state.pageCount}/10
+              Trang {this.state.pageCount}/1
             </Text>
             <TouchableHighlight
               underlayColor="#fff"
@@ -162,7 +168,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     justifyContent: 'flex-start',
-    backgroundColor: 'rgba(218, 218, 218, 0.5)',
+    backgroundColor: '#F1F1F1',
     height: 180,
     marginTop: 20,
     marginLeft: 15,
@@ -174,14 +180,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   date: {
-    fontSize: 16,
+    fontSize: 14,
     color: 'rgba(0, 0, 0, 0.87)',
     fontWeight: 'normal',
   },
   image: {
     resizeMode: 'stretch',
     justifyContent: 'center',
-    height: 105,
+    height: 100,
+    marginHorizontal: 20,
   },
   buttonNext: {
     margin: 7,

@@ -44,6 +44,7 @@ export default class ScreenDanhSachThe extends React.Component {
   state = {
     isModalVisible: false,
     pageCount: 1,
+    value: 0,
   };
 
   _toggleModal = () => {
@@ -57,7 +58,7 @@ export default class ScreenDanhSachThe extends React.Component {
 
   nextPageCount = () => {
     let x = this.state.pageCount + 1;
-    this.setState({pageCount: x > 10 ? 10 : x});
+    this.setState({pageCount: x > 1 ? 1 : x});
   };
 
   getInitialState() {
@@ -95,7 +96,13 @@ export default class ScreenDanhSachThe extends React.Component {
           </View>
         </TouchableHighlight>
 
-        <TouchableHighlight>
+        <TouchableHighlight
+          onPress={() =>
+            this.props.navigation.push('ChiTietThe', {
+              itemId: Math.floor(Math.random() * 100),
+            })
+          }
+          underlayColor="#fff">
           <View style={styles.itemContainer}>
             <View>
               <ImageBackground
@@ -123,7 +130,7 @@ export default class ScreenDanhSachThe extends React.Component {
               />
             </TouchableHighlight>
             <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
-              Trang {this.state.pageCount}/10
+              Trang {this.state.pageCount}/1
             </Text>
             <TouchableHighlight
               underlayColor="#fff"

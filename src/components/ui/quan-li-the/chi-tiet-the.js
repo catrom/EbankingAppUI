@@ -24,10 +24,10 @@ export default class ScreenChiTietThe extends React.Component {
     trangThai: 'Đang hoạt động',
   };
 
-  toggleModal = () => {
+  toggleModal = result => {
     this.setState({modalToggleCount: this.state.modalToggleCount + 1});
 
-    if (this.state.modalToggleCount % 2 === 0) {
+    if (result === 'yes') {
       if (this.state.trangThai === 'Đang hoạt động') {
         this.setState({trangThai: 'Đã khoá'});
       } else {
@@ -47,7 +47,7 @@ export default class ScreenChiTietThe extends React.Component {
 
   nextPageCount = () => {
     let x = this.state.pageCount + 1;
-    this.setState({pageCount: x > 10 ? 10 : x});
+    this.setState({pageCount: x > 1 ? 1 : x});
   };
 
   render() {
@@ -141,7 +141,7 @@ export default class ScreenChiTietThe extends React.Component {
             />
           </TouchableHighlight>
           <Text style={{color: 'rgba(0, 0, 0, 0.5)', fontSize: 16}}>
-            Trang {this.state.pageCount}/10
+            Trang {this.state.pageCount}/1
           </Text>
           <TouchableHighlight
             underlayColor="#fff"
@@ -213,14 +213,14 @@ export default class ScreenChiTietThe extends React.Component {
               </View>
               <View style={{flexDirection: 'row', justifyContent: 'center'}}>
                 <TouchableHighlight
-                  onPress={() => this.toggleModal()}
+                  onPress={() => this.toggleModal('no')}
                   underlayColor="rgba(102, 118, 133, 0.3)">
                   <View style={[styles.btn, styles.btnHuyBo]}>
                     <Text style={styles.textInButton}>Huỷ bỏ</Text>
                   </View>
                 </TouchableHighlight>
                 <TouchableHighlight
-                  onPress={() => this.toggleModal()}
+                  onPress={() => this.toggleModal('yes')}
                   underlayColor="rgba(43, 63, 81, 0.3)">
                   <View style={[styles.btn, styles.btnDongY]}>
                     <Text style={styles.textInButton}>Đồng ý</Text>
