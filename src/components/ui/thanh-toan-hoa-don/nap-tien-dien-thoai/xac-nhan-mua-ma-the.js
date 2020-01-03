@@ -72,7 +72,7 @@ export default class ScreenXacNhanMuaMaThe extends React.Component {
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{}}>
+              <View style={{marginTop: -10}}>
                 <Text style={styles.title}>Mệnh giá thẻ</Text>
               </View>
               <View style={{marginTop: 7, marginHorizontal: 20}}>
@@ -80,6 +80,23 @@ export default class ScreenXacNhanMuaMaThe extends React.Component {
               </View>
               <View style={{marginVertical: 4, marginHorizontal: 20}}>
                 <Text style={styles.description}>Hai mươi nghìn đồng</Text>
+              </View>
+              <View style={styles.line} />
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.box}>
+          <View style={styles.inputContainer}>
+            <View style={styles.textContainer}>
+              <View style={{}}>
+                <Text style={styles.title}>Phí dịch vụ</Text>
+              </View>
+              <View style={{marginTop: 7, marginHorizontal: 20}}>
+                <Text style={styles.value}>2,000 VND</Text>
+              </View>
+              <View style={{marginVertical: 4, marginHorizontal: 20}}>
+                <Text style={styles.description} />
               </View>
               <View style={styles.line} />
             </View>
@@ -175,7 +192,7 @@ const styles = StyleSheet.create({
   },
   box: {
     flexDirection: 'column',
-    height: 87,
+    height: 90,
   },
   inputContainer: {
     flexDirection: 'row',

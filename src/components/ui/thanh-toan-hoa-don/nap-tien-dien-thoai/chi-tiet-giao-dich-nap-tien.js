@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   description: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: 'normal',
     color: 'rgba(0, 0, 0, 0.60)',
   },

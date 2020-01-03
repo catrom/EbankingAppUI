@@ -86,6 +86,23 @@ export default class ScreenXacNhanNapTienDienThoai extends React.Component {
           </View>
         </View>
 
+        <View style={styles.box}>
+          <View style={styles.inputContainer}>
+            <View style={styles.textContainer}>
+              <View style={{}}>
+                <Text style={styles.title}>Phí dịch vụ</Text>
+              </View>
+              <View style={{marginTop: 7, marginHorizontal: 20}}>
+                <Text style={styles.value}>2,000 VND</Text>
+              </View>
+              <View style={{marginVertical: 4, marginHorizontal: 20}}>
+                <Text style={styles.description} />
+              </View>
+              <View style={styles.line} />
+            </View>
+          </View>
+        </View>
+
         <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 20}}>
           <TouchableHighlight
             style={{paddingTop: 15, alignItems: 'center'}}
@@ -175,7 +192,7 @@ const styles = StyleSheet.create({
   },
   box: {
     flexDirection: 'column',
-    height: 87,
+    height: 90,
   },
   inputContainer: {
     flexDirection: 'row',

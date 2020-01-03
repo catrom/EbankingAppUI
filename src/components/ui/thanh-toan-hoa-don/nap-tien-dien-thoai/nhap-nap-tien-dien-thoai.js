@@ -135,6 +135,8 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
   };
 
   state = {
+    soTien: '',
+    showMoneyDescription: false,
     index: 0,
     routes: [
       {
@@ -144,13 +146,18 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
       },
       {key: 'MuaMaThe', title: 'Mua mã thẻ', navigation: this.props.navigation},
     ],
-    soTien: '',
-    showMoneyDescription: false,
   };
 
   _handleIndexChange = index => {
     this.setState({index});
     console.log(this.state.index);
+  };
+
+  handleTextChange = text => {
+    const value = text.replace(/,/g, '');
+    if (/^[0-9]*$/g.test(value)) {
+      this.setState({soTien: value});
+    }
   };
 
   _renderTabBar = props => {
@@ -250,7 +257,13 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
                         paddingLeft: -2,
                       }}
                       keyboardType={'numeric'}
-                      onSubmitEditing={e =>
+                      value={this.state.soTien
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      onChangeText={e => {
+                        this.handleTextChange(e);
+                      }}
+                      onSubmitEditing={() =>
                         this.setState({
                           showMoneyDescription: !this.state
                             .showMoneyDescription,
