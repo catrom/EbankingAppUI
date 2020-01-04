@@ -87,8 +87,6 @@ let dataNetwork = [
   {value: {account: 'Gmobile', amount: ''}},
 ];
 
-let selectedCardIndex = 2;
-
 const TextDisplay = props => {
   const {amount, account} = props;
   return (
@@ -136,8 +134,10 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
 
   state = {
     soTien: '',
+    soTienInput: '',
     showMoneyDescription: false,
     index: 0,
+    selectedCardIndex: 1,
     routes: [
       {
         key: 'NapTienDienThoai',
@@ -148,16 +148,15 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
     ],
   };
 
+  _updateChoice = index => {
+    this.setState({
+      selectedCardIndex: index,
+    });
+  };
+
   _handleIndexChange = index => {
     this.setState({index});
     console.log(this.state.index);
-  };
-
-  handleTextChange = text => {
-    const value = text.replace(/,/g, '');
-    if (/^[0-9]*$/g.test(value)) {
-      this.setState({soTien: value});
-    }
   };
 
   _renderTabBar = props => {
@@ -184,16 +183,6 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
         })}
       </View>
     );
-  };
-
-  componentDidMount() {
-    this.props.navigation.setParams({confirmView: this._goConfirmView});
-  }
-
-  _goConfirmView = () => {
-    this.props.navigation.push('XacNhanNapTienDienThoai', {
-      itemId: Math.floor(Math.random() * 100),
-    });
   };
 
   NapTienDienThoaiView = () => {
@@ -257,11 +246,14 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
                         paddingLeft: -2,
                       }}
                       keyboardType={'numeric'}
-                      value={this.state.soTien
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      // value={this.state.soTien}
                       onChangeText={e => {
-                        this.handleTextChange(e);
+                        // this.setState({
+                        //   soTienInput: e,
+                        //   soTien: this.state.soTienInput
+                        //     .toString()
+                        //     .replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+                        // });
                       }}
                       onSubmitEditing={() =>
                         this.setState({
@@ -360,18 +352,58 @@ export default class ScreenNhapNapTienDienThoai extends React.Component {
 
         <View style={{flexDirection: 'column'}}>
           <View style={{flexDirection: 'row'}}>
-            <Card index={1} value={'10,000 VND'} />
-            <Card index={2} value={'20,000 VND'} />
-            <Card index={3} value={'30,000 VND'} />
+            <Card
+              index={1}
+              value={'10,000 VND'}
+              selected={this.state.selectedCardIndex === 1}
+              onPress={() => this._updateChoice(1)}
+            />
+            <Card
+              index={2}
+              value={'20,000 VND'}
+              selected={this.state.selectedCardIndex === 2}
+              onPress={() => this._updateChoice(2)}
+            />
+            <Card
+              index={3}
+              value={'30,000 VND'}
+              selected={this.state.selectedCardIndex === 3}
+              onPress={() => this._updateChoice(3)}
+            />
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Card index={4} value={'50,000 VND'} />
-            <Card index={5} value={'100,000 VND'} />
-            <Card index={6} value={'200,000 VND'} />
+            <Card
+              index={4}
+              value={'50,000 VND'}
+              selected={this.state.selectedCardIndex === 4}
+              onPress={() => this._updateChoice(4)}
+            />
+            <Card
+              index={5}
+              value={'100,000 VND'}
+              selected={this.state.selectedCardIndex === 5}
+              onPress={() => this._updateChoice(5)}
+            />
+            <Card
+              index={6}
+              value={'200,000 VND'}
+              selected={this.state.selectedCardIndex === 6}
+              onPress={() => this._updateChoice(6)}
+            />
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Card index={7} value={'300,000 VND'} />
-            <Card index={8} value={'500,000 VND'} />
+            <Card
+              index={7}
+              value={'300,000 VND'}
+              selected={this.state.selectedCardIndex === 7}
+              onPress={() => this._updateChoice(7)}
+            />
+            <Card
+              index={8}
+              value={'500,000 VND'}
+              selected={this.state.selectedCardIndex === 8}
+              onPress={() => this._updateChoice(8)}
+            />
           </View>
         </View>
 
@@ -444,21 +476,13 @@ class Card extends React.PureComponent {
 
     return (
       <TouchableHighlight
-        style={{
-          width: 110,
-          height: 60,
-          justifyContent: 'center',
-          marginRight: 20,
-          marginTop: 20,
-          padding: 5,
-          alignItems: 'center',
-          backgroundColor:
-            selectedCardIndex === {index}
-              ? 'rgba(43, 63, 81, 0.5)'
-              : 'rgba(238, 238, 238, 1)',
-        }}
+        activeOpacity={1}
+        style={[
+          styles.money,
+          this.props.selected ? {backgroundColor: 'rgba(43, 63, 81, 0.5)'} : {},
+        ]}
         underlayColor="#fff"
-        onPress={() => (selectedCardIndex = {index})}>
+        onPress={this.props.onPress}>
         <View>
           <Text style={styles.textInCard}>{value}</Text>
         </View>
@@ -546,5 +570,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black',
     alignItems: 'center',
+  },
+  money: {
+    width: 110,
+    height: 60,
+    justifyContent: 'center',
+    marginRight: 20,
+    marginTop: 20,
+    padding: 5,
+    alignItems: 'center',
+    backgroundColor: 'rgba(238, 238, 238, 1)',
+  },
+  overlay: {
+    backgroundColor: 'rgba(238, 238, 238, 1)',
   },
 });

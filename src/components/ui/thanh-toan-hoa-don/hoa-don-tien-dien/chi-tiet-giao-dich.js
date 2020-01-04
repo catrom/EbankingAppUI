@@ -90,6 +90,20 @@ export default class ScreenChiTietGiaoDichHoaDon extends React.Component {
           </View>
         </View>
 
+        <View style={styles.box}>
+          <View style={styles.inputContainer}>
+            <View style={styles.textContainer}>
+              <View style={{marginTop: -10}}>
+                <Text style={styles.title}>Phí dịch vụ</Text>
+              </View>
+              <View style={{marginVertical: 12, marginHorizontal: 20}}>
+                <Text style={[styles.value, {fontSize: 16}]}>15,000 VND</Text>
+              </View>
+              <View style={styles.line} />
+            </View>
+          </View>
+        </View>
+
         <View style={{flex: 1, justifyContent: 'flex-end', marginBottom: 20}}>
           <TouchableHighlight
             style={{paddingTop: 15, alignItems: 'center'}}

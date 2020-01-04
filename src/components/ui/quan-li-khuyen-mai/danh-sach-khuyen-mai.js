@@ -60,7 +60,7 @@ export default class ScreenDanhSachKhuyenMai extends React.Component {
 
             <View style={{marginTop: 10}}>
               <ImageBackground
-                source={require('app/src/assets/images/promotion1.png')}
+                source={require('app/src/assets/images/promotion3.png')}
                 style={styles.image}
               />
             </View>

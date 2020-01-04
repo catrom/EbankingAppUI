@@ -6,7 +6,9 @@ import {
   StyleSheet,
   TouchableHighlight,
   ImageBackground,
+  Alert,
 } from 'react-native';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 export default class ScreenChiTietGiaoDichMuaMaThe extends React.Component {
   static navigationOptions = ({navigationOptions}) => {
@@ -90,12 +92,25 @@ export default class ScreenChiTietGiaoDichMuaMaThe extends React.Component {
                     </Text>
                   </View>
                 </View>
-                <View style={{marginTop: 5}}>
-                  <ImageBackground
-                    source={require('app/src/assets/icons/copy.png')}
-                    style={styles.icon}
-                  />
-                </View>
+                <TouchableHighlight
+                  underlayColor="#fff"
+                  onPress={() => {
+                    // showMessage({
+                    //   message: 'Sao chép thông tin thẻ thành công!',
+                    //   type: 'info',
+                    // });
+                    Alert.alert(
+                      'Đã sao chép thông tin thẻ vào khay nhớ tạm',
+                      'Số thẻ: 214964497573664',
+                    );
+                  }}>
+                  <View style={{marginTop: 5}}>
+                    <ImageBackground
+                      source={require('app/src/assets/icons/copy.png')}
+                      style={styles.icon}
+                    />
+                  </View>
+                </TouchableHighlight>
               </View>
 
               <View style={styles.line} />

@@ -58,7 +58,7 @@ export default class ScreenChiTietGiaoDichChuyenTien extends React.Component {
         <View style={styles.box}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
-              <View style={{marginTop: 20}}>
+              <View style={{marginTop: 10}}>
                 <Text style={styles.title}>Tài khoản nguồn</Text>
               </View>
               <View style={{marginTop: 7, marginHorizontal: 20}}>
@@ -72,7 +72,7 @@ export default class ScreenChiTietGiaoDichChuyenTien extends React.Component {
           </View>
         </View>
 
-        <View style={(styles.box, {marginTop: 20, marginBottom: 10})}>
+        <View style={(styles.box, {marginTop: 10, marginBottom: 10})}>
           <View style={styles.inputContainer}>
             <View style={styles.textContainer}>
               <View style={{}}>
